@@ -1,0 +1,324 @@
+<nav style="background-color: #8092a5; border-color: #8092a5;" class="fixed top-0  w-full bg-white border-b border-gray-200 dark:border-gray-700">
+  <!-- <div class="px-3 py-3 lg:px-5 lg:pl-3"> -->
+    <div class="">
+    <div class="flex items-center items-stretch justify-between" style="align-items: stretch; height: 5em;">
+      <div class="flex items-center justify-start" style="padding-left: 3em;">
+        <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" (click)="toggleMenu()"
+          type="button"
+          class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200   dark:focus:ring-gray-600">
+          <span class="sr-only">Open sidebar</span>
+          <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+            </path>
+          </svg>
+
+        </button>
+        <a class="flex ml-2 md:mr-24">
+          <img src="../../../../assets/img/vector-arbol.svg" class="h-8 mr-3" alt="arbol" />
+          <span class="self-center text-sm sm:text-xl lg:text-xs font-semibold whitespace-nowrap ">
+            Gestión del árbol <br>urbano y periurbano
+        </span>
+
+
+
+        </a>
+      </div>
+      <div class="flex items-center items-stretch " style="background-color: #02ADB9;width: 30em;justify-content: center;">
+        <div class="relative">
+          <div>
+            <!-- <div class="btn-back">
+              <button onclick="window.history.back()">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30.000000pt" height="10.000000pt"
+                  viewBox="0 0 1280.000000 640.000000" preserveAspectRatio="xMidYMid meet">
+                  <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
+                    <path d="M3600 6163 c-51 -36 -3566 -2867 -3577 -2882 -24 -30 -27 -63 -8 -95
+             9 -17 92 -92 183 -167 92 -74 889 -727 1772 -1450 883 -723 1616 -1322 1630
+             -1332 37 -26 92 -22 121 9 l24 26 3 694 2 694 4481 0 c4886 0 4536 -4 4559 55
+             13 35 14 2934 0 2969 -5 14 -23 32 -39 41 -27 13 -486 15 -4515 15 l-4486 0
+             -2 694 -3 694 -24 26 c-29 31 -84 35 -121 9z" />
+                  </g>
+                </svg>
+              </button>
+            </div> -->
+            <button (click)="toggleUserMenu()" type="button"
+              class="btn btn-back2 flex text-sm bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              aria-expanded="false" data-dropdown-toggle="dropdown-user" style="background-color: #00000000;border: 0; box-shadow: none;">
+              <span class="sr-only">Open user menu</span>
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.37 21.14C6.56 20.23 7.88999 19.51 9.35999 18.99C10.83 18.47 12.37 18.2 13.98 18.2C15.59 18.2 17.13 18.46 18.6 18.99C20.07 19.52 21.4 20.23 22.59 21.14C23.41 20.18 24.04 19.1 24.5 17.88C24.96 16.66 25.1801 15.37 25.1801 14C25.1801 10.9 24.09 8.25001 21.91 6.07001C19.73 3.89001 17.09 2.80001 13.98 2.80001C10.87 2.80001 8.23005 3.89001 6.05005 6.07001C3.87005 8.25001 2.78003 10.89 2.78003 14C2.78003 15.38 3.00996 16.67 3.45996 17.88C3.90996 19.09 4.54999 20.18 5.37 21.14ZM13.98 15.4C12.6 15.4 11.44 14.93 10.5 13.98C9.56 13.03 9.07996 11.87 9.07996 10.5C9.07996 9.13001 9.55 7.96001 10.5 7.02001C11.45 6.08001 12.61 5.60001 13.98 5.60001C15.35 5.60001 16.52 6.07001 17.46 7.02001C18.4 7.97001 18.88 9.13001 18.88 10.5C18.88 11.87 18.41 13.04 17.46 13.98C16.51 14.92 15.35 15.4 13.98 15.4ZM13.98 28C12.04 28 10.22 27.63 8.52002 26.9C6.82002 26.17 5.33996 25.17 4.07996 23.91C2.81996 22.65 1.81997 21.17 1.08997 19.46C0.359966 17.75 -0.0100098 15.94 -0.0100098 14C-0.0100098 12.06 0.359966 10.24 1.08997 8.54001C1.81997 6.84001 2.81996 5.36001 4.07996 4.10001C5.33996 2.84001 6.82002 1.84001 8.52002 1.11001C10.22 0.380012 12.04 0.0100098 13.98 0.0100098C15.92 0.0100098 17.7399 0.380012 19.4399 1.11001C21.1399 1.84001 22.62 2.84001 23.88 4.10001C25.14 5.36001 26.14 6.84001 26.87 8.54001C27.6 10.24 27.97 12.06 27.97 14C27.97 15.94 27.6 17.76 26.87 19.46C26.14 21.16 25.14 22.65 23.88 23.91C22.62 25.17 21.1399 26.17 19.4399 26.9C17.7399 27.63 15.92 28 13.98 28Z" fill="white"/>
+              </svg>
+                
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="white">
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+              </svg> -->
+            </button>
+          </div>
+
+          <div *ngIf="openUserMenu"
+            class="absolute right-0 mt-2 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-400 dark:divide-gray-600"
+            id="dropdown-user">
+            <div class="px-4 py-3" role="none">
+              <strong class="text-sm text-gray-900 " role="none">
+                {{userLogged}}
+              </strong>
+            </div>
+            <ul class="py-1" role="none">
+              <li>
+                <a (click)="SignOut()"
+                  class="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                  role="menuitem">Salir</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- <button  aria-controls="logo-sidebar" type="button" (click)="toggleMenu()"
+  class="mobile-menu-button inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+  <span class="sr-only">Open sidebar</span>
+  <svg class="w-6 h-6"  fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd" fill-rule="evenodd"
+      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+    </path>
+  </svg>
+</button> -->
+<!-- MenuBar -->
+<div [ngClass]="{'menu-visible': menuVisible, 'menu-hidden': !menuVisible}"
+  class=" border-r border-gray-200" style="padding-top: 100px; position:relative"
+  >
+  <div class="px-3 pb-4">
+    <ul class="space-y-2 font-medium" style="  
+    backdrop-filter: blur(8px); background-color: #ffffff33;
+    display: flex;
+    justify-content: center; /* Alinea los elementos hacia la derecha */
+    list-style-type: none; 
+    border-radius: 8px;">
+      <li style="--tw-space-y-reverse: 0;
+      margin-bottom: calc(0.5rem*var(--tw-space-y-reverse));
+      margin-top: calc(0.5rem*(1 - var(--tw-space-y-reverse)));">
+        <a href="#/app/home"
+          class="flex items-center p-2 text-gray-900 rounded-lg  ">
+          <svg
+            class="w-6 h-6 text-gray-500 transition duration-75 "
+            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+          </svg>
+          <span class="ml-3">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <app-dropdown-menu label="Administracion" [dropdownId]="'001'">
+      <li>
+        <a *ngIf="menuusuario" href="#/app/usuarios"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group   ">Usuarios</a>
+      </li>
+      <li>
+        <a *ngIf="menuroles" href="#/app/roles"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Roles</a>
+      </li>
+      <li>
+        <a *ngIf="menupermisos" href="#/app/permisos"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Permisos</a>
+      </li>
+      <!-- <li>
+        <a *ngIf="menumodules" href="#/app/modules"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Modulos</a>
+      </li> -->
+
+      </app-dropdown-menu>
+      </li>
+      <li>
+        <app-dropdown-menu label="Configuraciones" [dropdownId]="'004'">
+      <!-- <li>
+        <a *ngIf="menumaestra" href="#/app/maestra"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Maestra</a>
+      </li> -->
+      <li>
+        <a href="#/app/detalle/by/0475362b-ab82-4d1e-8a32-cbfc0f5bd942"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Tipo
+          de individuo (forestal, arbusto, palma, frutal, bambú y guadua)</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/08bc8ed9-870a-4973-9908-4360702fff55"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Características
+          edáficas o del suelo</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/1bbd9baf-b6c1-46a8-b175-c9ad299646ee"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Infraestructura
+          afectada</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/3600546b-7820-4384-b05f-c0d77d17932c"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Tipo
+          de emplazamiento</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/3bb50b22-9b46-4662-876d-6bbcdacce005"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Distanciamiento
+          de siembra</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/5ed945fe-351d-4315-8c46-aeed0b730f4a"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Especies
+          potenciales para siembra (Al menos tres opciones)</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/77dcb515-3652-4387-8952-9070642aa296"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Estado
+          de madurez</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/7e60de52-ff90-4ab0-a379-0633bda93618"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Pendiente
+          del terreno</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/961d1612-d404-4fc0-b951-93552ee10b88"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Poda
+          sanitaria</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/a6207503-a3bd-460d-8b2c-d9e7360f68cc"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Estado
+          fitosanitario</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/abe3625e-670d-4c49-851c-2b5c6555d6de"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Recomendaciones
+          para manejo silvicultural</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/b0bb7f80-7997-4130-9ad4-301101b4f6ea"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Alturas
+          potenciales de árboles</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/b4f84511-f07a-412e-9fa0-f68180daf435"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Estructuras
+          cercanas (Tipo de emplazamiento)</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/e2b9fb66-ecc8-45e6-96dc-2bcde2267d76"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Limpieza</a>
+      </li>
+      <li>
+        <a href="#/app/detalle/by/e34711a0-b522-429f-af9b-307c9eead211"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Forma
+          de copa</a>
+      </li>
+
+
+
+
+      <li>
+        <a href="#/app/basictable/Orden"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Orden</a>
+      </li>
+      <li>
+        <a href="#/app/basictable/Familia"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Familia</a>
+      </li>
+      <li>
+        <a href="#/app/basictable/Genero"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Genero</a>
+      </li>
+      <li>
+        <a href="#/app/basictable/Especie"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Especie</a>
+      </li>
+      <li>
+        <a href="#/app/basictable/Comuna"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Comuna</a>
+      </li>
+      <li>
+        <a href="#/app/basictable/Barrio"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Barrio</a>
+      </li>
+      </app-dropdown-menu>
+      </li>
+      <li>
+        <app-dropdown-menu label="Arborización" [dropdownId]="'002'">
+      <li>
+        <a *ngIf="menucenso" href="#/app/censo"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Censo
+          arboreo</a>
+      </li>
+      <li>
+        <a *ngIf="menuespacios" href="#/app/espacios"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Espacios</a>
+      </li>
+      </app-dropdown-menu>
+      </li>
+      <li>
+        <app-dropdown-menu label="Actividades Silviculturales" [dropdownId]="'003'">
+
+      <li>
+        <a href="#/app/actividades/lista/Siembra"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          de Siembra</a>
+      </li>
+      <li>
+        <a href="#/app/actividades/lista/Poda"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          de Poda</a>
+      </li>
+      <li>
+        <a href="#/app/actividades/lista/Tala"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          de Tala</a>
+      </li>
+      <li>
+        <a href="#/app/actividades/intervenciones/Solicitada"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          Solicitada</a>
+      </li>
+      <li>
+        <a href="#/app/actividades/intervenciones/Aprobada"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          Aprobada</a>
+      </li>
+      <li>
+        <a href="#/app/actividades/intervenciones/Ejecutada"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          Ejecutada</a>
+      </li>
+      <li>
+        <a href="#/app/actividades/intervenciones/Rechazada"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Actividades
+          Rechazada</a>
+      </li>
+
+      </app-dropdown-menu>
+      </li>
+      <li>
+        <app-dropdown-menu label="Reportes" [dropdownId]="'003'">
+
+          <!-- <li>
+        <a  *ngIf="reportes" href="#/app/reportes"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Censo Arboleo</a>
+      </li> -->
+      <li>
+        <a href="#/app/reportes/masreportes"
+          class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Reportes</a>
+      </li>
+      </app-dropdown-menu>
+      </li>
+
+    </ul>
+    <!-- <a href="https://arb.transfors.co/file/MANUAL%20PROYECTO%20ARBORIZACIÓN.pdf" style="
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;    left: 0;" class="flex items-center p-2 text-gray-900 rounded-lg  ">Manual </a> -->
+  </div>
+</div>

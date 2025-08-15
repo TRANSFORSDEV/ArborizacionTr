@@ -1,0 +1,28 @@
+.container-registro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.registro-foto {
+    
+    max-height: 200px;
+} 
+
+.button-float{
+    float: left;
+    position: relative;
+    top: -50%;
+    color: red;
+    right: 10px;
+    background: white;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.onlyButtonUpload{
+    
+    width: 135px;
+    overflow: hidden;
+}

@@ -1,0 +1,101 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@angular/cdk/overlay-prebuilt.css';
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+:root{
+  --color-primario: #02ADB9;
+  --gris-claro: #f4f5f5;
+  --gris-fuerte: #d7dfe0;
+  --color-transfor: #00244a;
+}
+
+body{
+  background-image: url('assets/img/background.png');
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+.required
+{
+  border: 1px solid red !important;
+}
+
+[type=button], [type=reset], [type=submit], button{
+  border-radius: 8px;
+  background-color: var(--color-primario);
+}
+
+.p-datatable .p-datatable-thead > tr > th:first-child{
+  border-radius: 10px 0 0 0;
+}
+
+.p-datatable .p-datatable-thead > tr > th:last-child{
+  border-radius: 0 10px 0 0;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--gris-fuerte);
+    color: var(--color-transfor);
+    font-weight: bold;
+    border-color: transparent;
+    
+}
+
+.p-datatable .p-datatable-tbody > tr > td{
+  border-color: transparent;
+}
+/*estilo sub menu*/
+.fondo-menu {
+  background-color:  #5f73ff;
+  
+}
+.fondo-submenu {
+  background-color:  #5f73ff;
+  color: #2D2D2D;
+  opacity: 0.2;
+}
+  
+  
+input {
+  border-color: var(--gris-claro)!important; 
+  color: #1a1919!important;
+
+}
+select {
+  border-color:  var(--gris-claro)!important;
+  color: #AFAFAF!important;
+}
+select option:hover {
+  background-color: #8cff5f!important;
+}
+option:hover {
+  background: #1b1a1a!important;
+ 
+  }
+
+  h1{
+    font-size: 25px!important;
+    font-weight: bold!important;
+  }
+
+
+.letraenlace:hover{
+  background-color: #313D6F!important;
+  color: white;
+}
+
+app-workspace{
+  [multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea{
+    background-color: var(--gris-claro);
+    border-color: transparent;
+  }
+
+  .ng-select .ng-select-container{
+    background-color: var(--gris-claro);
+    border-color: transparent;
+  }
+}

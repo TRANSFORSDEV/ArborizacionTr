@@ -1,0 +1,49 @@
+name: Deploy Angular App to FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout el código del repositorio
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # 2. Configura Node.js (Angular requiere Node.js para compilar)
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+   # 3. Instala Angular CLI globalmente
+    - name: Install Angular CLI
+      run: |
+        cd basic-spa-framework
+        npm install -g @angular/cli
+
+    # 4. Cambia al directorio de la aplicación Angular e instala las dependencias
+    - name: Install dependencies 
+      run: |
+        cd basic-spa-framework
+        npm install
+    
+    # 5. Cambia al directorio de la aplicación Angular e instala las dependencias
+    - name: Build 
+      run: |
+        cd basic-spa-framework
+        npm run build 
+
+    # 6. Despliega la aplicación al FTP
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: api2.transfors.co
+        username: arbolada
+        password: arbolada123456$
+        server-dir: /FE/
+        local-dir: dist/basic-spa-framework # Asegúrate de especificar el nombre correcto de tu aplicación Angular aquí

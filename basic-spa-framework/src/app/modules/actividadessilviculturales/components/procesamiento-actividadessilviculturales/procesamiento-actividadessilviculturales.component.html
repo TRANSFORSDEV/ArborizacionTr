@@ -1,0 +1,471 @@
+<div class="flex justify-between mb-4">
+  <h1 class="text-lg font-semibold">Actividades Silviculturales - {{tipoActividad}}</h1>
+</div>
+<br>
+
+<form [formGroup]="form">
+
+  <div class="card mb-2 disabled-div" *ngIf="!isNew">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Información Individuo
+      </div>
+      <div class="p-6">
+        <div style="display: none;">
+          <label for="idCensoArboreo" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Id
+            individuo:</label>
+          <input type="text" formControlName="idCensoArboreo" id="idCensoArboreo" readonly="readonly"
+            class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="idCensoArboreo" />
+        </div>
+        <div>
+          <label for="numeroIndividuo" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Numero
+            individuo:</label>
+          <input type="text" id="numeroIndividuo" readonly="readonly"
+            class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="numeroIndividuo" value="{{actividadessilviculturalesDto.censoArboreo.numeroIndividuoId}}" />
+        </div>
+        <div>
+          <label for="numeroArbolEnCampo" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Numero
+            de arbol en campo:</label>
+          <input type="text" formControlName="numeroArbolEnCampo" id="numeroArbolEnCampo" readonly="readonly"
+            class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="numeroArbolEnCampo" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card mb-2 disabled-div">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Ubicación
+      </div>
+      <div class="p-6">
+        <div>
+
+          <div class="border-blue-500" style="height: 200px; width: 100%" id="containerId2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-2 disabled-div" *ngIf="isSiembra">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Siembra
+      </div>
+      <div class="p-6">
+        <div class="grid gap-6 mb-6 md:grid-cols-4">
+
+
+
+          <div>
+            <label for="responsable"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Responsable:</label>
+            <input type="text" formControlName="responsable" id="responsable"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Responsable" [ngClass]="{
+                  required:
+                    form.get('responsable').invalid &&
+                    form.get('responsable').touched
+                }" />
+          </div>
+          <div>
+            <label for="estructurasCercanasTipoEmplazamiento"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Estructuras cercanas (Tipo de
+              emplazamiento):</label>
+
+            <ng-select [items]="tipoEmplazamientoList" bindLabel="nombre" bindValue="nombre"
+              formControlName="estructurasCercanasTipoEmplazamiento"
+              placeholder="Estructuras cercanas (Tipo de emplazamiento)"
+              [ngClass]="{required: form.get('estructurasCercanasTipoEmplazamiento').invalid && form.get('estructurasCercanasTipoEmplazamiento').touched}">
+            </ng-select>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card mb-2 disabled-div" *ngIf="isPoda">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Poda
+      </div>
+      <div class="p-6">
+        <div class="grid gap-6 mb-6 md:grid-cols-4">
+
+
+
+
+          <div>
+            <label for="nuevaIntervencion" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Nueva
+              Intervencion:</label>
+            <input type="Date" formControlName="nuevaIntervencion" id="nuevaIntervencion"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Nueva Intervencion" [ngClass]="{
+                          required: form.get('nuevaIntervencion').invalid && form.get('nuevaIntervencion').touched
+                        }" />
+          </div>
+
+
+
+
+          <div>
+            <label for="podaCorreccion" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda de
+              Corrección:</label>
+            <input type="checkbox" formControlName="podaCorreccion" id="podaCorreccion"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Poda de Corrección" [ngClass]="{
+                  required:
+                    form.get('podaCorreccion').invalid &&
+                    form.get('podaCorreccion').touched
+                }" />
+
+
+          </div>
+
+
+          <div>
+            <label for="podaFormacion" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda de
+              Formación:</label>
+            <input type="checkbox" formControlName="podaFormacion" id="podaFormacion"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Poda de Formación" [ngClass]="{
+                  required:
+                    form.get('podaFormacion').invalid &&
+                    form.get('podaFormacion').touched
+                }" />
+          </div>
+
+
+          <div>
+            <label for="podaRealceR" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda de
+              realce - R:</label>
+            <input type="checkbox" formControlName="podaRealceR" id="podaRealceR"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Poda de realce - R"
+              [ngClass]="{'required': form.get('podaRealceR').invalid && form.get('podaRealceR').touched}">
+          </div>
+          <div>
+            <label for="podaEstabilidadE" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda
+              de estabilidad - E:</label>
+            <input type="checkbox" formControlName="podaEstabilidadE" id="podaEstabilidadE"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Poda de estabilidad - E"
+              [ngClass]="{'required': form.get('podaEstabilidadE').invalid && form.get('podaEstabilidadE').touched}">
+          </div>
+          <div>
+            <label for="podaMantenimientoM" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda
+              de mantenimiento -M:</label>
+            <input type="checkbox" formControlName="podaMantenimientoM" id="podaMantenimientoM"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Poda de mantenimiento -M"
+              [ngClass]="{'required': form.get('podaMantenimientoM').invalid && form.get('podaMantenimientoM').touched}">
+          </div>
+
+          <div>
+            <label for="cortesNuevos" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Cortes
+              nuevos:</label>
+            <input type="checkbox" formControlName="cortesNuevos" id="cortesNuevos"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Cortes nuevos"
+              [ngClass]="{'required': form.get('cortesNuevos').invalid && form.get('cortesNuevos').touched}">
+          </div>
+          <div>
+            <label for="cortesViejos" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Cortes
+              viejos:</label>
+            <input type="checkbox" formControlName="cortesViejos" id="cortesViejos"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Cortes viejos"
+              [ngClass]="{'required': form.get('cortesViejos').invalid && form.get('cortesViejos').touched}">
+          </div>
+          <div>
+            <label for="cortesEnfermos" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Cortes
+              enfermos:</label>
+            <input type="checkbox" formControlName="cortesEnfermos" id="cortesEnfermos"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Cortes enfermos"
+              [ngClass]="{'required': form.get('cortesEnfermos').invalid && form.get('cortesEnfermos').touched}">
+          </div>
+          <div>
+            <label for="podaRaices" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda de
+              raíces:</label>
+            <input type="checkbox" formControlName="podaRaices" id="podaRaices"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Poda de raíces"
+              [ngClass]="{'required': form.get('podaRaices').invalid && form.get('podaRaices').touched}">
+          </div>
+
+
+
+          <div>
+            <label for="limpieza"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Limpieza:</label>
+
+
+            <ng-select [items]="limpiezaList" bindLabel="nombre" bindValue="nombre" formControlName="limpieza"
+              placeholder="Limpieza"
+              [ngClass]="{required: form.get('limpieza').invalid && form.get('limpieza').touched}">
+            </ng-select>
+
+          </div>
+
+
+
+
+          <div>
+            <label for="podaSanitaria" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Poda
+              sanitaria:</label>
+
+            <ng-select [items]="podaSanitariaList" bindLabel="nombre" bindValue="nombre" formControlName="podaSanitaria"
+              placeholder="Poda Sanitaria"
+              [ngClass]="{required: form.get('podaSanitaria').invalid && form.get('podaSanitaria').touched}">
+            </ng-select>
+
+          </div>
+
+
+
+          <div>
+            <label for="inmediataI" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Inmediata
+              -I:</label>
+            <input type="checkbox" formControlName="inmediataI" id="inmediataI"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Inmediata -I"
+              [ngClass]="{'required': form.get('inmediataI').invalid && form.get('inmediataI').touched}">
+          </div>
+          <div>
+            <label for="cortoPlazoC" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">corto plazo
+              -C:</label>
+            <input type="checkbox" formControlName="cortoPlazoC" id="cortoPlazoC"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="corto plazo -C"
+              [ngClass]="{'required': form.get('cortoPlazoC').invalid && form.get('cortoPlazoC').touched}">
+          </div>
+          <div>
+            <label for="largoPlazoL" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">largo plazo
+              - L:</label>
+            <input type="checkbox" formControlName="largoPlazoL" id="largoPlazoL"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="largo plazo - L"
+              [ngClass]="{'required': form.get('largoPlazoL').invalid && form.get('largoPlazoL').touched}">
+          </div>
+          <div>
+            <label for="trasplante"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Trasplante:</label>
+            <input type="checkbox" formControlName="trasplante" id="trasplante"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Trasplante"
+              [ngClass]="{'required': form.get('trasplante').invalid && form.get('trasplante').touched}">
+          </div>
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card mb-2 disabled-div" *ngIf="isTala">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Tala
+      </div>
+      <div class="p-6">
+        <div class="grid gap-6 mb-6 md:grid-cols-4">
+
+
+          <div>
+            <label for="numAutorizationCdmb"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Num. Autorization CDMB</label>
+            <input type="text" formControlName="numAutorizationCdmb" id="numAutorizationCdmb"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Num. Autorization CDMB" [ngClass]="{
+                  required:
+                    form.get('numAutorizationCdmb').invalid &&
+                    form.get('numAutorizationCdmb').touched
+                }" />
+          </div>
+
+          <div>
+            <label for="usoDeMadera" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Uso de la
+              madera:</label>
+            <input type="text" formControlName="usoDeMadera" id="usoDeMadera"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Uso de la madera" [ngClass]="{
+                  required:
+                    form.get('usoDeMadera').invalid &&
+                    form.get('usoDeMadera').touched
+                }" />
+          </div>
+
+
+          <div>
+            <label for="expedicionPermiso"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Expedicion Permiso:</label>
+            <input type="Date" formControlName="expedicionPermiso" id="expedicionPermiso"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Nueva Intervencion" [ngClass]="{
+                          required: form.get('expedicionPermiso').invalid && form.get('expedicionPermiso').touched
+                        }" />
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="card mb-2 disabled-div">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Información del actividades silviculturales
+      </div>
+      <div class="p-6">
+        <div class="grid gap-6 mb-6 md:grid-cols-3">
+
+          <div>
+            <label for="actor" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Actor:</label>
+            <input type="text" formControlName="actor" id="actor"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Actor" [ngClass]="{
+                  required:
+                    form.get('actor').invalid &&
+                    form.get('actor').touched
+                }" />
+          </div>
+
+
+          <div>
+            <label for="operador"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Operador:</label>
+            <input type="text" formControlName="operador" id="operador"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Operador" [ngClass]="{
+                  required:
+                    form.get('operador').invalid &&
+                    form.get('operador').touched
+                }" />
+          </div>
+
+
+          <div>
+            <label for="estado" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Estado:</label>
+            <input type="text" formControlName="estado" id="estado" readonly="readonly"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Estado">
+          </div>
+
+
+
+
+        </div>
+        <div class="grid gap-6 mb-6 md:grid-cols-1">
+          <div class="">
+            <label for="observacion"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Observación:</label>
+
+            <textarea type="text" formControlName="observacion" id="observacion"
+              class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Observación"
+              [ngClass]="{'required': form.get('observacion').invalid && form.get('observacion').touched}">
+            </textarea>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-2 disabled-div">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Foto Antes
+      </div>
+      <div class="p-6">
+        <app-registrofotografico #registroFotograficoAntes [dataForm]="onlyRegistroFotograficoAntes"
+          [multiple]="isMultipleMode"></app-registrofotografico>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-2 disabled-div">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Foto Durante
+      </div>
+      <div class="p-6">
+        <app-registrofotografico #registroFotograficoDurante [dataForm]="onlyRegistroFotograficoDurante"
+          [maxFotos]="2"></app-registrofotografico>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-2 disabled-div">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-500 text-white px-4 py-2">Foto despues
+      </div>
+      <div class="p-6">
+        <app-registrofotografico #registroFotograficoDespues [dataForm]="onlyRegistroFotograficoDespues"
+          [multiple]="isMultipleMode"></app-registrofotografico>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="grid gap-6 mb-6 md:grid-cols-1">
+    <div class="">
+      <label for="observacion2"
+        class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Razón:</label>
+
+      <textarea type="text" formControlName="observacion2" id="observacion2"
+        class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Razón"
+        [ngClass]="{'required': form.get('observacion2').invalid && form.get('observacion2').touched}">
+    </textarea>
+
+    </div>
+  </div>
+  <br>
+  <div *ngIf="statusDetail==='error'" class="alert alert-danger" role="alert">
+    Ha ocurrido un error al crear el actividades silviculturales.
+  </div>
+  <div *ngIf="isFormInValid" class="alert alert-danger" role="alert">
+    Hay campos que faltan por llenar.
+  </div>
+  <div *ngIf="statusDetail==='success'" class="alert alert-success" role="alert">
+    La operacion se ha realizado con exito.
+  </div>
+  <br>
+  <div class="flex justify-center space-x-4" *ngIf="actividadessilviculturalesDto.estado=='Solicitada'">
+    <app-btn typeBtn="submit" color="yellow" [loading]="statusDetail === 'loading'"
+      (click)="CambiarEstado(2)">Rechazar</app-btn>
+
+    <app-btn typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+      (click)="CambiarEstado(1)">Aprobar</app-btn>
+  </div>
+  <div class="flex justify-center space-x-4" *ngIf="actividadessilviculturalesDto.estado=='Aprobada'">
+    <app-btn typeBtn="submit" color="yellow" [loading]="statusDetail === 'loading'"
+      (click)="CambiarEstado(3)">Ejecutar</app-btn>
+  </div>
+
+
+
+</form>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Eliminar</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="c('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>¿Estas seguro que deseas eliminar?</p>
+  </div>
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c(Borrar())">Si</button>
+  </div>
+</ng-template>

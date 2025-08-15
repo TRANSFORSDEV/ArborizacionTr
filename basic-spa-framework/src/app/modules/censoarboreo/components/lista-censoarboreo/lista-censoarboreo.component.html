@@ -1,0 +1,181 @@
+<div style="padding: 5px 10px 10px 10px;" class="relative  top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+  
+  <div class="flex justify-between mb-4">
+    <ul class="flex">
+      <li class="flex-row" style="padding: 5px 0 0 0;">
+            <h1 class="text-lg font-semibold">Censo Arboreo</h1>
+           
+      </li>
+    </ul>
+    <div>
+    <button type="submit" (click)="Descargar()" class=" mr-1.5 w-48 w-full text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium px-2.5 py-2.5 text-center" > 
+      <div  class="flex pl-5 items-center w-full " align="center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>         
+        <span class="ml-2 p-12">Descargar Csv</span>
+      </div> 
+    </button>
+    <button type="submit" (click)="descargarShapefileZip()" class=" mr-1.5 w-48 w-full text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium px-2.5 py-2.5 text-center" > 
+      <div  class="flex pl-5 items-center w-full " align="center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>         
+        <span class="ml-2 p-12">Descargar Shape</span>
+      </div> 
+    </button>
+    <app-cargar-manual class="mr-1.5"></app-cargar-manual>
+    <button *ngIf="mostrarCreate" type="submit" routerLink="/app/censo/create" class="  w-48 w-full text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium px-2.5 py-2.5 text-center" > 
+     Agregar +
+  
+    </button>
+    </div>
+    
+  </div>
+  <form [formGroup]="form" class="mb-8">
+    <div *ngIf="statusDetail === 'init'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div>
+        <label for="table-filtering-search" class="block text-xs font-medium text-gray-700">Filtrar:</label>
+        <input  id="table-filtering-search" formControlName="filter"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+          type="text" />
+      </div>
+      <div>
+        <label for="comuna" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Comuna:</label>
+        <ng-select [items]="Comunas" bindLabel="descripcion" bindValue="descripcion" formControlName="comuna"
+          placeholder="Comuna" (change)="changeLeagueOwner($event)" [ngClass]="{
+              required:
+                form.get('comuna').invalid && form.get('comuna').touched
+            }">
+        </ng-select>
+      </div>
+      <div>
+        <label for="barrio" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Barrio:</label>
+        <ng-select [items]="Barrios" bindLabel="descripcion" bindValue="descripcion" formControlName="barrio"
+          placeholder="Barrio" [ngClass]="{
+          required:
+            form.get('barrio').invalid && form.get('barrio').touched
+        }">
+        </ng-select>
+      </div>
+      <div class="w-full">
+        <label for="arbolesid" class="block text-sm font-medium text-gray-700">Es guadua?</label>
+        <select id="arbolesid" formControlName="guadua" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" >
+          <option value="true">Sí</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+      <div class="w-full">
+        <label for="sinPlantulas" class="block text-sm font-medium text-gray-700">Sin Plantulas?</label>
+        <select id="sinPlantulas" formControlName="sinPlantulas" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" >
+          <option value="true">Sí</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<div *ngIf="statusDetail === 'loading'" class="flex items-center justify-center min-h-screen">
+  <div class=" inset-0 bg-gray-500 opacity-5"></div>
+  <div class="z-0 p-2 bg-white rounded-lg shadow-lg" style="height: 50px;">
+    <div class="flex justify-center mb-4">
+      <div class="loader ease-linear border-8 border-t-8 border-gray-200 h-16 w-16"></div>
+      <p class="text-1xl text-center text-gray-900 animate-pulse">
+        Cargando Censo Arboreo...
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<br>
+<div style="padding: 20px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+  <h1 class="text-lg font-semibold p-2">Información Encontrada</h1>
+  <p-table [value]="dataList" [paginator]="true" [rows]="this.pageSize" [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }" [lazy]="true" [totalRecords]="collectionSize" [sortOrder]="sortOrder"
+    (onLazyLoad)="refreshGrid($event)" [rowsPerPageOptions]="[5, 10, 15, 20]">
+    <ng-template pTemplate="header">
+      <tr class="bg-gray-50">
+        <th pSortableColumn="numeroIndividuoId" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          Numero de individuo - ID
+          <p-sortIcon field="numeroIndividuoId"></p-sortIcon>
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre común</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre científico
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Orden</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Familia</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Género</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Especie</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Altitud (a.s.n.m.)
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado fitosanitario
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado de madurez
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo de individuo
+          (forestal, arbusto, palma, frutal, bambú y guadua)</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registro fotográfico
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Barrio</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Comuna</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo de emplazamiento
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Infraestructura
+          afectada</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Especie endemica</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origen</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Observación</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recomendaciones para
+          manejo silvicultural</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+      <tr [class.bg-gray-200]="rowIndex % 2 === 0">
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.numeroIndividuoId}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.nombreComun}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.nombreCientifico}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.orden}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.familia}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.genero}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.especie}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.altitudASNM}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.estadoFitosanitario.replaceAll("'.'","").replaceAll('["','').replaceAll('"]','').replaceAll('"]','').replaceAll('"','').replaceAll('[]','')}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.estadoMadurez}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.tipoIndividuoForestal}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.registroFotografico}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.barrio}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.comuna}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.tipoEmplazamiento}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.infraestructuraAfectada.replaceAll("'.'","").replaceAll('["','').replaceAll('"]','').replaceAll('"]','').replaceAll('"','').replaceAll('[]','')}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.especieEndemica? 'Si': 'No'}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.origen}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.observacion}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.fecha | date:"dd/MM/yyyy hh:mm" }}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.recomendacionesParaManejoSilvicultural.replaceAll("'.'","").replaceAll('["','').replaceAll('"]','').replaceAll('"]','').replaceAll('"','').replaceAll('[]','')}}</td>
+        <td class="px-6 py-4 whitespace-nowrap w-64">
+          <div class="flex items-center">
+              <a [routerLink]="['./edit', rowData.id]"class="flex items-center p-2 rounded-lg "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00cc00" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+              </svg>
+              Editar</a>
+              <span class="ml-2"></span>
+              <a [routerLink]="['./print', rowData.id]" class="flex items-center p-2 rounded-lg "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00cc" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
+              </svg>
+              Imprimir</a>
+         </div>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

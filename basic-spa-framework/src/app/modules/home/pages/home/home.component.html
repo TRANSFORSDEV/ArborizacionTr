@@ -1,0 +1,74 @@
+<div *ngIf="statusDetail === 'loading'" class="flex items-center justify-center min-h-screen">
+  <div class="absolute inset-0 bg-gray-500 opacity-5"></div>
+  <div class=" p-2 bg-white rounded-lg shadow-lg" style="height: 50px;">
+    <div class="flex justify-center mb-4">
+      <div class="loader ease-linear border-8 border-t-8 border-gray-200 h-16 w-16"></div>
+      <p class="text-1xl text-center text-gray-900 animate-pulse">
+        <fa-icon class="mr-2" [icon]="faSpinner" [pulse]="true"></fa-icon>Cargando Arboles...
+      </p>
+    </div>
+
+  </div>
+</div>
+<form [formGroup]="form" class="mb-8">
+  <div style="padding: 20px 10px 10px 10px;"
+    class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+    <h1 class="text-lg font-semibold p-2">Filtros</h1>
+    <div *ngIf="statusDetail === 'init'"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div>
+        <label for="comuna" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Comuna:</label>
+        <ng-select [items]="Comunas" bindLabel="descripcion" bindValue="descripcion" formControlName="comuna"
+          placeholder="Comuna" (change)="changeLeagueOwner($event)" [ngClass]="{
+            required:
+              form.get('comuna').invalid && form.get('comuna').touched
+          }">
+        </ng-select>
+      </div>
+      <div>
+        <label for="barrio" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Barrio:</label>
+        <ng-select [items]="Barrios" bindLabel="descripcion" bindValue="descripcion" formControlName="barrio"
+          placeholder="Barrio" [ngClass]="{
+        required:
+          form.get('barrio').invalid && form.get('barrio').touched
+      }">
+        </ng-select>
+      </div>
+      <div class="w-full">
+        <label for="arbolesid" class="block text-sm font-medium text-gray-700">Es guadua?</label>
+        <select id="arbolesid" formControlName="guadua" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+          <option value="true">Sí</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <div class="flex  justify-end space-x-2 ">
+    <label for="arbolesid" class="block text-sm font-medium text-gray-500">.</label>
+    <button type="submit" (click)="getArbolesCiudad()"
+      class=" w-48 w-full text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm px-2.5 py-2.5 text-center">
+      Cargar Arboles </button>
+    <!--<app-btn class="" (click)="getArbolesCiudad()" typeBtn="submit" color="green" [customIcon]="'faShareFromSquare'">Cargar Arboles</app-btn>-->
+    <button type="button" (click)="Imprimir()"
+      class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center  ">
+      Imprimir</button>
+
+  </div>
+</form>
+<div style="height: 90%; width:100%; position: relative;">
+  <div id="containerId">
+  </div>
+  <select (change)="changeBasemap($event)" style="position: absolute; top: 90px; left: 10px; z-index: 10;">
+    <option value="satellite">Satellite</option>
+    <option value="hybrid">Hybrid</option>
+    <option value="streets">Streets</option>
+    <option value="topo">Topographic</option>
+    <option value="gray">Gray</option>
+  </select>
+</div>
+<br>
+<br>
+<br>
+<br>

@@ -1,0 +1,8 @@
+
+
+.disabled-div {
+    pointer-events: none; /* Evita eventos de ratón y teclado */
+    opacity: 0.6; /* Reduce la opacidad para indicar que está deshabilitado */
+    background-color: #eee; /* Cambia el color de fondo para indicar deshabilitación */
+    /* Otros estilos de deshabilitación */
+  }

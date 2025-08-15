@@ -1,0 +1,37 @@
+import { RenewTokenServiceMock } from './core/services/renew-token.service.mock';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverlayModule } from '@angular/cdk/overlay'
+import { environment } from 'src/environments/environment';
+import { AuthServiceMock } from './core/services/auth.service.mock';
+import { AuthService } from './core/services/auth.service';
+import { RenewTokenService } from './core/services/renew-token.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/Interceptor/token-interceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    OverlayModule,
+    BrowserAnimationsModule,
+    HttpClientModule
+  ],
+  providers: [
+    { provide: 'API_URL', useValue: environment.API_URL },
+    { provide: AuthService, useClass: AuthService },  //TODO: comment to remove mock
+    { provide: RenewTokenService, useClass: RenewTokenService }, //TODO: comment to remove mock
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

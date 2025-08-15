@@ -1,0 +1,44 @@
+<!--<app-btn
+color="green"
+(click)="toggleModal()"> Cargar Censo Arboreo </app-btn>-->
+<button  type="submit" (click)="toggleModal()" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" > Cargar censo arboleo</button>
+
+<app-modal [titulo]="'Cargue Manual de Censo Arboreo'" [botonModal]="'Cargar Censo'" [ShowModal]="showModal" (cerrarModalEvent)="cerrarModal($event)">
+  <section class="my-4 text-slate-500 text-lg leading-relaxed">
+    <form [formGroup]="form">
+      <p class="my-4 text-slate-500 text-lg leading-relaxed">
+        Debes seleccionar un archivo de censo arboreo valido para realizar la carga de manera exitosa.
+      </p>
+      <section class="flex items-center justify-end py-4 px-6 bg-gray-200 rounded-md">
+        <a href="assets/plantillaCenso.xlsx" download="plantillaCenso.xlsx" class=" text-gray-700 hover:text-gray-900"><h2>Descargar Plantilla</h2></a>
+      </section><br>
+
+        <section>
+          <app-file-upload (fileUploaded)="onFileUploaded($event)"></app-file-upload>
+          <label *ngIf="selectedFile">Archivo preparado: {{selectedFile.name}}</label>
+        </section>
+        <br>
+        <section>
+          <div *ngIf="statusDetail==='error'" class="alert alert-danger" role="alert">
+            Ha ocurrido un error al cargar.
+          </div>
+          <div *ngIf="statusDetail==='success'" class="alert alert-success" role="alert">
+            La operacion se ha realizado con exito.
+          </div>
+          <div *ngIf="isFormInValid" class="alert alert-danger" role="alert">
+            <ul>
+            </ul>
+          </div>
+        </section>
+        <br>
+        <div class="flex justify-end space-x-4">
+          <app-btn  typeBtn="submit"
+          *ngIf="selectedFile"
+          color="primary"
+          [loading]="statusDetail === 'loading'"
+          (click)="cargarArchivo()">Cargar Archivo</app-btn>
+        </div>
+    </form>
+
+  </section>
+</app-modal>

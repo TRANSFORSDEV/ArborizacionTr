@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+  <div class="p6">
+    <div class="grid gap-6 mb-6 md:grid-cols-4">
+      <div *ngFor="let img of fotos; let i = index" class="container-registro">
+        <img [src]="imagesUrl+img.nombre" class="registro-foto rounded-md" >        
+        <button (click)="removeImageSaved(i)" class="button-float">
+          <fa-icon class="mr-2" [icon]="faXmarkSquare"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="p6">
+    <div class="onlyButtonUpload">
+      <input type="file" (change)="onFilesSelected($event)" accept="image/*" multiple>
+    </div>
+    <div class="grid gap-6 mb-6 md:grid-cols-4">
+      <div *ngFor="let img of images; let i = index" class="container-registro">
+        <img [src]="img.src" class="registro-foto rounded-md" [style.transform]="'rotate(' + img.rotation + 'deg)'">
+        <button (click)="rotateImage(i, -90)" class="button-float"><fa-icon class="mr-2" [icon]="faArrowLeftRotate"></fa-icon></button>
+        <button (click)="rotateImage(i, 90)" class="button-float"><fa-icon class="mr-2" [icon]="faArrowRightRotate"></fa-icon></button>
+        
+        <button (click)="removeImage(i)" class="button-float">
+          <fa-icon class="mr-2" [icon]="faXmarkSquare"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

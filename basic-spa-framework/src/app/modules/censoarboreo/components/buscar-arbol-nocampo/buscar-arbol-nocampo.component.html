@@ -1,0 +1,35 @@
+<form>
+  <div class="card mb-2">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+
+      <app-buscar-arbol (selected)="Seleccionar($event)" [isActividadPlantula]="isActividadPlantulaBusqueda">
+
+      </app-buscar-arbol>
+      <div class="p-1">
+        <div class="grid gap-2 mb-2 md:grid-cols-2">
+          <div>
+            <p-table [value]="crossSilviculturales">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Numero de individuo - ID</th>
+                  <th>Numero de arbol a campo</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+                <tr>
+                  <td>{{ product.numeroIndividuoId }}</td>
+                  <td>
+                    <input pInputText type="text" id="numeroArbolCampo-{{rowIndex}}" name="numeroArbolCampo-{{rowIndex}}" [(ngModel)]="product.numeroArbolCampo" />
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div>
+            <div class="border-blue-500" style="height: 300px;" id="containerId">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

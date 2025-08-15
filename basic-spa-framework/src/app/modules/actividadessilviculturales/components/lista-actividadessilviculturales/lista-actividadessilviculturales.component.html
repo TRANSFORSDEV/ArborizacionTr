@@ -1,0 +1,129 @@
+<div style="padding: 5px 10px 10px 10px;" class="relative  top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+  <div class="flex justify-between mb-4">
+    <ul class="flex">
+      <li class="flex-row" style="padding: 5px 0 0 0;">
+            <h1 class="text-lg font-semibold">Actividades Silviculturales - {{tipoActividad}}</h1>
+
+      </li>
+    </ul>
+    <div>
+
+      <app-cargar-manual-poda *ngIf="tipoActividad == 'Poda'" class="mr-1.5"></app-cargar-manual-poda>
+      <app-cargar-manual-tala *ngIf="tipoActividad == 'Tala'" class="mr-1.5"></app-cargar-manual-tala>
+      <app-cargar-manual-siembra *ngIf="tipoActividad == 'Siembra'" class="mr-1.5"></app-cargar-manual-siembra>
+
+      <button  type="submit" (click)="Descargar()" class=" mr-1.5 pl-1.5 w-55  text-white focus:ring-4   px-2.5 py-2.5 " >
+        <div class="flex items-center w-full " align="center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          <span class="ml-2">Descargar Actividades</span>
+        </div></button>
+          <!--<app-btn (click)="Descargar()" typeBtn="submit" color="green" [customIcon]="'faShareFromSquare'" >Descargar Actividades</app-btn>-->
+          <button  type="submit" [routerLink]="routeAdd" *ngIf="mostrarCreate" class=" w-48  w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" > Agregar + </button>
+
+
+    </div>
+
+
+
+  </div>
+  <form [formGroup]="form" class="mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+      <div>
+        <label for="table-filtering-search" class="block text-xs font-medium text-gray-700">Filtrar:</label>
+        <input (keyup)="Buscar()" id="table-filtering-search" formControlName="filter" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" type="text" />
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+
+
+
+<div style="padding: 20px 10px 10px 10px;" class="relative  top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+  <h1 class="text-lg font-semibold p-2">Información Encontrada</h1>
+
+  <p-table   [value]="dataList"
+  [paginator]="true"
+  [rows]="this.pageSize"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [lazy]="true"
+  [totalRecords]="collectionSize" (onLazyLoad)="refreshGrid($event)"
+  [rowsPerPageOptions]="[5, 10, 15, 20]">
+    <ng-template pTemplate="header">
+        <tr class="bg-gray-50">
+
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Numero Individuo</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Poda de realce - R</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Poda de estabilidad - E</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Poda de mantenimiento -M</th>
+
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Cortes nuevos</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Cortes viejos</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Cortes enfermos</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Poda de raíces</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estructuras cercanas (Tipo de emplazamiento)</th>
+
+
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Limpieza</th>
+
+
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Poda sanitaria</th>
+
+
+
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inmediata -I</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">corto plazo -C</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">largo plazo - L</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" *ngIf="this.tipoActividad == 'Poda'">Trasplante</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Observación</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+
+
+
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr [class.bg-gray-200]="rowIndex % 2 === 0">
+
+          <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.censoArboreo.numeroIndividuoId}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.podaRealceR? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.podaEstabilidadE? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.podaMantenimientoM? 'Si': 'No'}}</td>
+
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.cortesNuevos? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.cortesViejos? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.cortesEnfermos? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.podaRaices? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.estructurasCercanasTipoEmplazamiento}}</td>
+
+
+          <td class="px-6 py-4 whitespace-nowrap w-64"  *ngIf="this.tipoActividad == 'Poda'">{{rowData.limpieza}}</td>
+
+
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.podaSanitaria}}</td>
+
+
+
+          <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.inmediataI? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.cortoPlazoC? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.largoPlazoL? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64" *ngIf="this.tipoActividad == 'Poda'">{{rowData.trasplante? 'Si': 'No'}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64">{{rowData.observacion}}</td>
+          <td class="px-6 py-4 whitespace-nowrap w-64">{{translateStateIntToString(rowData.estado)}} </td>
+
+            <td class="px-6 py-4 whitespace-nowrap w-64">
+                <a [routerLink]="[editPath, rowData.id]" class="flex items-center p-2 rounded-lg "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00cc00" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                </svg>
+                Editar</a>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+
+</div>

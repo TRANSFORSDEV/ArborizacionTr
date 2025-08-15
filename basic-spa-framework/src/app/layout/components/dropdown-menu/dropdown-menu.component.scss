@@ -1,0 +1,21 @@
+button {
+  background-color: #00000000;
+  border-bottom: 2px solid #00000000;
+  border-radius: 0;
+}
+
+button:hover {
+    background-color: #0cc3ff3d;
+    border-bottom: 2px solid #02ADB9;
+    border-radius: 0;
+  }
+  
+  button:hover::after {
+    content: "";
+    position: absolute; /* Posiciona el pseudo-elemento de manera absoluta con respecto al botón */
+    bottom: -10px; /* Posiciona la flecha justo debajo del botón */
+    left: calc(50% - 10px); /* Centra la flecha horizontalmente */
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #02ADB9; /* Color de la flecha */
+  }

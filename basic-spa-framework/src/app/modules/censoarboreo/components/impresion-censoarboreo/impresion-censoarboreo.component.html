@@ -1,0 +1,554 @@
+
+<style>
+    /* Estilos normales de la tabla */
+.table-con-borde {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-con-borde td, .table-con-borde th {
+  border: 1px solid black;
+  padding: 8px;
+
+
+}
+.table-con-borde th{
+  background-color: #5F73FF;
+}
+h3 {
+	page-break-before: always;
+}
+</style>
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="Imprimir()">
+  Imprimir
+</button>
+<div id="divimprimir" style="overflow: auto;" >
+<div class="flex justify-between mb-4">
+ 
+ 
+</div>
+<br />
+
+  <table cellspacing="30" style="background-color: white; width: 100%;">
+    <tr>
+      <td>
+        <img src="../../../../assets/img/alcaldia.png" class="w-150 h-150 object-cover" alt="logo alcaldia" />
+
+      </td>
+      <td style="font-size: 40px;">
+        <h1>REPORTES</h1>
+      </td>
+      <td style="padding: 10px;">
+       
+        <h2 class="text-lg font-semibold">SOF-FO-08</h2>
+        <p>Versión N°1</p>
+        <p>Fecha del reporte: {{ fechaActual }}</p>
+
+      </td>
+      
+    </tr>
+  </table>
+
+<form [formGroup]="form">
+  
+<div class="bg-white">
+
+
+   
+      
+      <hr>
+      <div align="center">
+      <img width="200px" height="200px" [src]="blobUrlPrincipal" class="registro-foto rounded-md" >   
+    </div><br>   
+     
+      
+          <div style=" width: 100%;">
+            <table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="4" align="center">CLASIFICACIÓN</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">NOMBRE COMÚN</td>
+                  <td style="width: 25%; word-wrap: break-word">{{censoArboreo.nombreComun}}</td>
+                  <td style="font-weight: bold;">NOMBRE CIENTIFICO</td>
+                  <td style="width: 25%; word-wrap: break-word">{{censoArboreo.nombreCientifico}}</td>
+                 
+                
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">ORDEN</td>
+                  <td style="width: 25%; word-wrap: break-word">{{censoArboreo.orden}}</td>
+                  <td style="font-weight: bold; width: 25%;">FAMILIA</td>
+                  <td style="width: 25%; word-wrap: break-word">{{censoArboreo.familia}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">GENERO</td>
+                  <td style="width: 25%; word-wrap: break-word">{{censoArboreo.genero}}</td>
+                  <td style="font-weight: bold; width: 25%;">ESPECIE</td>
+                  <td style="width: 25%; word-wrap: break-word">{{censoArboreo.especie}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table><br><br>
+            <table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="4" align="center">INFORMACIÓN DEL INDIVIDUO</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">NUMERO ID</td>
+                  <td style="font-weight: bold; width: 25%;">{{censoArboreo.numeroIndividuoId}}</td>
+                  <td style="font-weight: bold; width: 25%; ">ALTURA TOTAL</td>
+                  <td>{{censoArboreo.alturaTotal}}</td>
+                 
+                
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">ALTURA COMERCIAL</td>
+                  <td>{{censoArboreo.alturaComercial}}</td>
+                  <td style="font-weight: bold; ">CUADRILLA</td>
+                  <td>{{censoArboreo.cuadrilla}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; ">FORMA DE LA COPA</td>
+                  <td>{{censoArboreo.formaCopa}}</td>
+                  <td style="font-weight: bold; ">DIÁMETRO DE LA COPA</td>
+                  <td>{{censoArboreo.diametroCopa}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; ">ALTURA DE LA COPA</td>
+                  <td>{{censoArboreo.alturaCopa}}</td>
+                  <td style="font-weight: bold; ">OBSERVACIÓN DE LA COPA</td>
+                  <td>{{censoArboreo.observacionCopa}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table><br><br>
+            <table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="4" align="center">DAP</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">CAP</td>
+                  <td style="font-weight: bold; width: 25%;">{{censoArboreo.dap}}</td>
+                  <td style="font-weight: bold; width: 25%;">CAP 2</td>
+                  <td>{{censoArboreo.daP2}}</td>
+                 
+                
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">CAP 3</td>
+                  <td>{{censoArboreo.daP3}}</td>
+                  <td style="font-weight: bold;">CAP 4</td>
+                  <td>{{censoArboreo.daP4}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">NDAP TOTAL</td>
+                  <td>{{censoArboreo.ndaptotal}}</td>
+                  <td style="font-weight: bold;">DAP TOTAL</td>
+                  <td>{{censoArboreo.daptotal}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table><br><br>
+            <table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="4" align="center">INFORMACIÓN GENERAL</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">ALTITUD ASNM</td>
+                  <td style="font-weight: bold; width: 25%;">{{censoArboreo.altitudASNM}}</td>
+                  <td style="font-weight: bold; width: 25%;">ESTADO FITOSANITARIO</td>
+                  <td>{{censoArboreo.estadoFitosanitario.replaceAll("'.'","").replaceAll('["','').replaceAll('"]','').replaceAll('"]','').replaceAll('"','').replaceAll('[]','')}}</td>
+                 
+                
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">ESTADO DE MADUREZ</td>
+                  <td>{{censoArboreo.estadoMadurez}}</td>
+                  <td style="font-weight: bold;">TIPO DE INDIVIDUO FORESTAL</td>
+                  <td>{{censoArboreo.tipoIndividuoForestal}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">DEPARTAMENTO</td>
+                  <td>{{censoArboreo.departamento}}</td>
+                  <td style="font-weight: bold;">CIUDAD</td>
+                  <td>{{censoArboreo.ciudad}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">TIPO DE AGLOMERACIÓN</td>
+                  <td>{{censoArboreo.tipoAglomeracion}}</td>
+                  <td style="font-weight: bold;">BARRIO </td>
+                  <td>{{censoArboreo.barrio}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">COMUNA </td>
+                  <td>{{censoArboreo.comuna}}</td>
+                  <td style="font-weight: bold;">TIPO DE EMPLAZAMIENTO </td>
+                  <td>{{censoArboreo.tipoEmplazamiento}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">OBSERVACIÓN DEL TIPO DE EMPLAZAMIENTO</td>
+                  <td>{{censoArboreo.observacionTipoEmplazamiento}}</td>
+                  <td style="font-weight: bold;">INFRAESCTRUCTURA AFECTADA</td>
+                  <td>{{censoArboreo.infraestructuraAfectada.replaceAll("'.'","").replaceAll('["','').replaceAll('"]','').replaceAll('"]','').replaceAll('"','').replaceAll('[]','')}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">OBSERVACIÓN DE LA INFRAESCTRUTURA AFECTADA </td>
+                  <td>{{censoArboreo.observacionInfraestructuraAfectada}}</td>
+                  <td style="font-weight: bold;">APÉNDICE CITES</td>
+                  <td>{{censoArboreo.apendiceCites? 'SI' : 'NO'}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">CATEGORIA UICN</td>
+                  <td>{{censoArboreo.categoriaUicn? 'SI' : 'NO'}}</td>
+                  <td style="font-weight: bold;">CATEGORIA MINISTERIO RESOLUCIÓN 019/2014</td>
+                  <td>{{censoArboreo.categoriaMinisterioResolucion01922014? 'SI' : 'NO'}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">ESPECIE ENDÉMICA</td>
+                  <td>{{censoArboreo.especieEndemica? 'SI' : 'NO'}}</td>
+                  <td style="font-weight: bold;">ORIGEN </td>
+                  <td>{{censoArboreo.origen}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">OBSERVACIÓN</td>
+                  <td>{{censoArboreo.observacion}}</td>
+                  <td style="font-weight: bold;">FECHA</td>
+                  <td>{{censoArboreo.fecha}}</td>
+                  
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">RECOMENDACIONES PARA EL MANEJO SILVICULTURAL</td>
+                  <td>{{censoArboreo.recomendacionesParaManejoSilvicultural.replaceAll("'.'","").replaceAll('["','').replaceAll('"]','').replaceAll('"]','').replaceAll('"','').replaceAll('[]','')}}</td>
+                  
+                  
+                </tr>
+                
+               
+               
+
+                
+              </tbody>
+            </table><br><br>
+            <table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="4" align="center">COORDENADAS GEOGRÁFICAS Y PLANAS</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; width: 25%;">LATITUD</td>
+                  <td style="font-weight: bold; width: 25%;">{{onlyCoordenadas.latitud}}</td>
+                  <td style="font-weight: bold; width: 25%;">LONGITUD</td>
+                  <td>{{onlyCoordenadas.longitud}}</td>
+                 
+                
+                </tr>
+               <tr>
+                 <td style="font-weight: bold;">NORTE</td>
+                 <td>{{onlyCoordenadas.norte}}</td>
+                 <td style="font-weight: bold;">ESTE </td>
+                 <td>{{onlyCoordenadas.este}}</td>
+                 
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">ALTITUD </td>
+                  <td>{{onlyCoordenadas.altitud}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table><br><br>
+            <h3></h3>
+            <!-- <table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="4" align="center">ACTIVIDADES SILVICULTURALES
+                    PODA
+                    </th>
+                  
+                </tr>
+                <tr>
+                  <th colspan="4" align="center">INFORMACIÓN INDIVIDUO</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataList">
+                  <td style="font-weight: bold; width: 25%">NUMERO DE INDIVIDUO – ID</td>
+                  <td style="font-weight: bold; width: 25%;">{{censoArboreo.numeroIndividuoId}}</td> 
+                  <td style="font-weight: bold; width: 25%;">NUMERO DE ARBOL A CAMPO</td>
+                  <td>{{ item.numeroArbolEnCampo }}</td>
+                 
+                
+                </tr>
+                
+              </tbody>
+            </table><br><br> -->
+           
+           
+            <div class="card overflow-auto" >
+              <div class="bg-white rounded-lg shadow-md overflow-scroll">
+               
+                <div class="p-12">
+                  <div class="grid gap-6 mb-6 md:grid-cols-1">
+                    <table style="font-size: 14px;"  [ngClass]="'table-con-borde'">
+                    
+                        <tr>
+                          <th colspan="4" align="center">PODA</th>
+                        </tr>
+                        <tbody  class="bg-white divide-y divide-gray-200">
+                          <ng-container *ngFor="let item of dataList; let i = index">
+                            <ng-container *ngIf="item.isPoda">
+                              <tr>
+                                <td style="width: 25%;" class="font-bold" >Nueva Intervención</td> <td style="width: 25%;">{{ item.nuevaIntervencion }}</td> <td style="width: 25%;" class="font-bold">Poda Corrección</td><td style="width: 25%;">{{ item.podaCorreccion? 'SI' : 'NO' }}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Actor</td> <td style="width: 25%;">{{ item.actor }}</td> <td style="width: 25%;" class="font-bold">Operador</td><td style="width: 25%;">{{ item.operador }}</td>
+                              </tr>
+                              
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Poda formación</td><td style="width: 25%;">{{ item.podaFormacion? 'SI' : 'NO'}}</td> <td style="width: 25%;" class="font-bold">Poda Realce R</td><td style="width: 25%;">{{ item.podaRealceR? 'SI' : 'NO' }}</td>
+                              </tr>
+                              <tr>
+                               <td style="width: 25%;" class="font-bold" >Poda Estabilidad E</td><td style="width: 25%;">{{ item.podaEstabilidadE? 'SI' : 'NO' }}</td> <td style="width: 25%;" class="font-bold">Poda Mantenimiento M</td><td style="width: 25%;">{{ item.podaMantenimientoM? 'SI' : 'NO' }}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Cortes Nuevos</td> <td style="width: 25%;">{{ item.cortesNuevos? 'SI' : 'NO' }}</td><td style="width: 25%;" class="font-bold">Cortes Viejos</td><td style="width: 25%;">{{ item.cortesViejos? 'SI' : 'NO' }}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Cortes Enfermos</td><td style="width: 25%;">{{ item.cortesEnfermos? 'SI' : 'NO' }}</td> <td style="width: 25%;" class="font-bold">Poda Raíces</td> <td style="width: 25%;">{{ item.podaRaices? 'SI' : 'NO' }}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Limpieza</td><td style="width: 25%;">{{ item.limpieza }}</td><td style="width: 25%;" class="font-bold">Poda Sanitaria</td> <td style="width: 25%;" >{{ item.podaSanitaria }}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Inmediata I</td> <td style="width: 25%;">{{ item.inmediataI? 'SI' : 'NO' }}</td> <td style="width: 25%;" class="font-bold">Corto Plazo C</td><td style="width: 25%;" >{{ item.cortoPlazoC? 'SI' : 'NO' }}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 25%;" class="font-bold">Largo Plazo L</td> <td style="width: 25%;">{{ item.largoPlazoL? 'SI' : 'NO' }}</td> <td style="width: 25%;" class="font-bold">Trasplante</td> <td style="width: 25%;" >{{ item.trasplante? 'SI' : 'NO' }}</td>
+                              </tr>
+                               <tr>
+                                <td style="width: 25%;" class="font-bold">Observación</td><td style="width: 25%;">{{ item.observacion }}</td><td style="width: 25%;" class="font-bold">Estado</td><td style="width: 25%;">{{ getEstadoFromNumber(item.estado) }}</td>
+                               </tr>
+                               <tr>
+                                <td colspan="4" style="background-color: rgb(212, 212, 241);">
+                                </td>
+                               </tr>
+                               <tr>
+                                <td colspan="2" align="center" class="font-bold">FOTO ANTES</td> <td colspan="2" align="center" class="font-bold">FOTO DESPUES</td>
+                               </tr>
+                               <tr>
+                                <td colspan="2"  >
+                                  <div align="center">
+                                    <img style="width: 100%;" [src]="blobUrlAntes[i]"  alt="..." />  
+                                  
+                                  </div>
+                                </td>
+                                <td colspan="2" >
+                                  <div align="center">
+                                    <img style="width: 100%;" [src]="blobUrlDespues[i]"  alt="..." /> 
+                                </div>  
+                                </td>
+                               </tr>
+                               <tr>
+                                <td colspan="4" class="bg-blue-400">
+
+                                </td>
+                               </tr>
+                               <tr>
+                                <th colspan="4" align="center">OBSERVACION</th>
+                              </tr>
+
+                              <tr>
+                                <td colspan="4"  class="font-bold" >{{item.observacion2}}</td>
+                              </tr>
+
+                              
+                        <!--</tr>-->
+                          </ng-container>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                </div></div></div></div>
+
+           <br><br>
+            <!--<table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="2" align="center">FOTO ANTES</th>
+                  <th colspan="2" align="center">FOTO DESPUES</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container  *ngFor="let item of dataList; let i = index">
+                  <tr *ngIf="item.isPoda">
+                  <td colspan="2"  >
+                    <div align="center">
+                      <img style="width: 100%;" [src]="blobUrlAntes[i]"  alt="..." />  
+                    
+                    </div>
+                  </td>
+                  <td colspan="2" >
+                    <div align="center">
+                      <img style="width: 100%;" [src]="blobUrlDespues[i]"  alt="..." /> 
+                  </div>  
+                  </td>
+                  </tr>
+                </ng-container>
+               
+                
+              </tbody>
+            </table><br><br>-->
+            <div class="card overflow-auto" >
+              <div class="bg-white rounded-lg shadow-md overflow-scroll">
+               
+                <div class="p-12">
+                  <div class="grid gap-6 mb-6 md:grid-cols-1">
+                    <table style="font-size: 14px;"  [ngClass]="'table-con-borde'">
+                      <tbody class="bg-white divide-y divide-gray-200">
+                        
+                        <tr>
+                          <th colspan="19" align="center">TALA</th>
+                        </tr>
+                        <ng-container *ngFor="let item of dataList; let i = index">
+                          <ng-container  *ngIf="item.isTala">
+                        <tr>
+                          <td style="width: 25%;" >Numero individuo Id</td> <td style="width: 25%;">{{censoArboreo.numeroIndividuoId}}</td> <td style="width: 25%;" >Numero arbol a campo</td><td style="width: 25%;">{{ item.numeroArbolEnCampo }}</td>
+                        </tr>
+                        <tr>
+                          <td style="width: 25%;" >Num. autorization cdmb</td><td style="width: 25%;">{{ item.numAutorizationCdmb }}</td><td style="width: 25%;" >Uso de la madera</td><td style="width: 25%;">{{ item.usoDeMadera }}</td>
+                        </tr>
+                        <tr>
+                          <td style="width: 25%;" >Nueva intervención</td><td style="width: 25%;">{{ item.nuevaIntervencion }}</td>
+                          <td style="width: 25%;" class="font-bold">Estado</td><td style="width: 25%;">{{ getEstadoFromNumber(item.estado) }} </td>
+                        </tr>
+                        <tr>
+                          <td colspan="4" style="background-color: rgb(212, 212, 241);">
+                          </td>
+                         </tr>
+                         <tr>
+                          <td colspan="2" align="center" class="font-bold">FOTO ANTES</td> <td colspan="2" align="center" class="font-bold">FOTO DESPUES</td>
+                         </tr>
+                         <tr>
+                          <td colspan="2"  >
+                            <div align="center">
+                              <img style="width: 100%;" [src]="blobUrlAntes[i]"  alt="..." />  
+                            
+                            </div>
+                          </td>
+                          <td colspan="2" >
+                            <div align="center">
+                              <img style="width: 100%;" [src]="blobUrlDespues[i]"  alt="..." /> 
+                          </div>  
+                          </td>
+                         </tr>
+                         <tr>
+                          <td colspan="4" class="bg-blue-400">
+
+                          </td>
+                         </tr>
+                         <tr>
+                          <th colspan="4" align="center">OBSERVACION</th>
+                        </tr>
+                        <tr>
+                          <td colspan="4"  class="font-bold" >{{item.observacion2}}</td>
+                        </tr>
+                          </ng-container>
+                  
+                      </ng-container>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+              </div>
+            </div>
+
+            
+
+           <br><br>
+            <!--<table [ngClass]="'table-con-borde'">
+              <thead>
+                <tr>
+                  <th colspan="2" align="center">FOTO ANTES</th>
+                  <th colspan="2" align="center">FOTO DESPUES</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container  *ngFor="let item of dataList; let i = index">
+                  <tr *ngIf="item.isTala">
+                    <td colspan="2"  >
+                      <div align="center">
+                        <img style="width: 100%;" [src]="blobUrlAntes[i]"  alt="..." />  
+                      
+                      </div>
+                    </td>
+                    <td colspan="2" >
+                      <div align="center">
+                        <img style="width: 100%;" [src]="blobUrlDespues[i]"  alt="..." /> 
+                    </div>  
+                    </td>
+                  </tr>
+                </ng-container>
+               
+                
+              </tbody>
+            </table><br><br>-->
+
+         
+
+         
+        </div>
+      </div>
+    
+
+  
+
+   <br />
+
+     
+    
+
+    
+      
+      
+      
+    
+      
+
+</form>
+
+</div>

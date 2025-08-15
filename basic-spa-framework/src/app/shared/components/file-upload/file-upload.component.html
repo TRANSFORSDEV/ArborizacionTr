@@ -1,0 +1,6 @@
+<section>
+  <form [formGroup]="fileForm" >
+    <input type="file" (change)="onFileChange($event)" formControlName="file" />
+    <app-btn *ngIf="selectedFile" type="submit" color="primary" (click)="uploadFile()" >Preparar archivo</app-btn>
+  </form>
+</section>

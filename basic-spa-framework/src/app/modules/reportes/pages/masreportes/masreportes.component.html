@@ -1,0 +1,52 @@
+<form [formGroup]="form">
+  <div class="flex flex-col md:flex-row md:gap-6 justify-between">
+    <div class="w-full">
+      <label for="fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha de inicio</label>
+      <input type="date" formControlName="desde" id="fecha_inicio" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" />
+    </div>
+    <div class="w-full">
+      <label for="fecha_final" class="block text-sm font-medium text-gray-700">Fecha final</label>
+      <input type="date" formControlName="hasta" id="fecha_final" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" />
+    </div>
+    <div class="w-full">
+      <label for="arbolesid" class="block text-sm font-medium text-gray-700">Es guadua?</label>
+      <select id="arbolesid" formControlName="guadua" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" >
+        <option value="true">Sí</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+    <div class="w-full">
+      <label class="text-sm font-medium text-gray-700">Tipo de reporte</label>
+      <select formControlName="selectedReportType" name="tipofile"  class="w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-2">
+        <option value="1">Exportar siembra</option>
+        <option value="2">Exportar poda</option>
+        <option value="3">Exportar tala</option>
+        <option value="4">Exportar Shape</option>
+        <option value="5">Exportar Censo</option>
+        <option value="6">Exportar Espacios</option>
+      </select>
+    </div>
+    <div class="w-full">
+      <label class="text-sm font-medium text-gray-700">Responsable</label>
+      <input type="text" formControlName="filter" id="responsable" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" />
+    </div>
+    
+  </div><br>
+  <div class="w-full" align="center">
+    <button  type="submit" (click)="Descargar()" class="  w-48  text-white focus:ring-4   px-2.5 py-2.5 " >
+      <div class="flex items-center w-full pl-4  " align="center">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+        <span class="ml-2">Descargar</span>
+      </div></button>
+    <!--<button (click)="Descargar()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Descargar</button>-->
+  </div>
+ </form>
+
+
+
+
+
+
+

@@ -1,0 +1,238 @@
+<app-obligatorio></app-obligatorio>
+<div class="flex justify-between mb-4">
+  <h1 class="text-lg font-semibold">Espacios Potenciales</h1>
+</div>
+<br>
+<form [formGroup]="form">
+
+
+      <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+        <div class="flex justify-between mb-4">
+          <ul class="flex">
+            <li class="flex-row" style="padding: 5px 0 0 0;">
+                  <h1 class="text-lg font-semibold">Información del Espacios Potenciales</h1>
+               </li>
+          </ul>
+
+
+        </div>
+
+        <div class="p-6">
+          <div class="grid gap-6 mb-6 md:grid-cols-4">
+            <div>
+              <label for="areasDisponibles" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Áreas
+                disponibles (m2):</label>
+              <input type="text" appNumberInput formControlName="areasDisponibles" id="areasDisponibles"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Áreas disponibles"
+                [ngClass]="{'required': form.get('areasDisponibles').invalid && form.get('areasDisponibles').touched}">
+            </div>
+            <div>
+              <label for="tipoEmplazamiento" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Tipo
+                de emplazamiento:</label>
+              <ng-select [items]="tipoEmpla" bindLabel="nombre" bindValue="nombre" formControlName="tipoEmplazamiento"
+                placeholder="Tipo de emplazamiento"
+                [ngClass]="{required: form.get('tipoEmplazamiento').invalid && form.get('tipoEmplazamiento').touched}">
+              </ng-select>
+            </div>
+            <div>
+              <label for="especiesPotencialesParaSiembraAlMenosTresOpciones"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Especies potenciales para
+                siembra:</label>
+
+                <!--<label for="especiePotencial"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">*Especies potenciales para
+                siembra:</label>-->
+                <ng-select [items]="especiePotencial" bindLabel="" bindValue="" formControlName="EspeciesPotencialesParaSiembraAlMenosTresOpciones"
+                placeholder="Especies potenciales para siembra (al menos tres opciones)" [multiple]="true"
+                [ngClass]="{required: form.get('EspeciesPotencialesParaSiembraAlMenosTresOpciones').invalid && form.get('EspeciesPotencialesParaSiembraAlMenosTresOpciones').touched}">
+              </ng-select>
+              <!-- <input type="text" formControlName="EspeciesPotencialesParaSiembraAlMenosTresOpciones"
+                id="especiePotencial"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Especies potenciales para siembra (al menos tres opciones)"
+                [ngClass]="{'required': form.get('especiePotencial').invalid && form.get('especiePotencial').touched}"> -->
+            </div>
+            <div>
+              <label for="alturasPotencialesArboles"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Alturas potenciales de
+                árboles:</label>
+                <ng-select [items]="alturaPotencial" bindLabel="desc" bindValue="id" formControlName="alturasPotencialesArboles"
+                placeholder="Alturas potenciales de árboles"
+                [ngClass]="{required: form.get('alturasPotencialesArboles').invalid && form.get('alturasPotencialesArboles').touched}">
+              </ng-select>
+              <!-- <input type="text" appNumberInput formControlName="alturasPotencialesArboles" id="alturasPotencialesArboles"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Alturas potenciales de árboles"
+                [ngClass]="{'required': form.get('alturasPotencialesArboles').invalid && form.get('alturasPotencialesArboles').touched}"> -->
+            </div>
+            <div>
+              <label for="caracteristicasEdaficasODelSuelo"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Características edáficas o del
+                suelo:</label>
+                <ng-select [items]="caracteristicasEdaficas" bindLabel="desc" bindValue="id" formControlName="caracteristicasEdaficasODelSuelo"
+                placeholder="Características edáficas o del suelo"
+                [ngClass]="{required: form.get('caracteristicasEdaficasODelSuelo').invalid && form.get('caracteristicasEdaficasODelSuelo').touched}">
+              </ng-select>
+              <!-- <input type="text" formControlName="caracteristicasEdaficasODelSuelo" id="caracteristicasEdaficasODelSuelo"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Características edáficas o del suelo"
+                [ngClass]="{'required': form.get('caracteristicasEdaficasODelSuelo').invalid && form.get('caracteristicasEdaficasODelSuelo').touched}"> -->
+            </div>
+            <div>
+              <label for="tresBolillo" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Tres
+                bolillo:</label>
+              <input type="checkbox" formControlName="tresBolillo" id="tresBolillo"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Tres bolillo"
+                [ngClass]="{'required': form.get('tresBolillo').invalid && form.get('tresBolillo').touched}">
+            </div>
+            <div>
+              <label for="cuadrado"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Cuadrado:</label>
+              <input type="checkbox" formControlName="cuadrado" id="cuadrado"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Cuadrado"
+                [ngClass]="{'required': form.get('cuadrado').invalid && form.get('cuadrado').touched}">
+            </div>
+            <div>
+              <label for="rectangular"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Rectangular:</label>
+              <input type="checkbox" formControlName="rectangular" id="rectangular"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Rectangular"
+                [ngClass]="{'required': form.get('rectangular').invalid && form.get('rectangular').touched}">
+            </div>
+            <div>
+              <label for="individualOUno"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Individual o uno:</label>
+              <input type="checkbox" formControlName="individualOUno" id="individualOUno"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Individual o uno"
+                [ngClass]="{'required': form.get('individualOUno').invalid && form.get('individualOUno').touched}">
+            </div>
+            <div>
+              <label for="distanciamientoSiembra"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Distanciamiento de
+                siembra:</label>
+              <ng-select [items]="distSiembra" bindLabel="nombre" bindValue="nombre"
+                formControlName="distanciamientoSiembra" placeholder="Distanciamiento de siembra"
+                [ngClass]="{required: form.get('distanciamientoSiembra').invalid && form.get('distanciamientoSiembra').touched}">
+              </ng-select>
+
+
+            </div>
+            <div>
+              <label for="pendienteDelTerreno"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Tipo de terreno:</label>
+              <ng-select [items]="pendiente" bindLabel="nombre" bindValue="nombre" formControlName="pendienteDelTerreno"
+                placeholder="Distanciamiento de siembra"
+                [ngClass]="{required: form.get('pendienteDelTerreno').invalid && form.get('pendienteDelTerreno').touched}">
+              </ng-select>
+
+            </div>
+            <div>
+              <label for="comuna" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Comuna:</label>
+              <ng-select [items]="Comunas" bindLabel="descripcion" bindValue="descripcion" formControlName="comuna"
+                placeholder="Comuna" (change)="changeLeagueOwner($event)" [ngClass]="{
+                    required:
+                      form.get('comuna').invalid && form.get('comuna').touched
+                  }">
+              </ng-select>
+            </div>
+            <div>
+              <label for="barrio" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Barrio:</label>
+              <ng-select [items]="Barrios" bindLabel="descripcion" bindValue="descripcion" formControlName="barrio"
+                placeholder="Barrio" [ngClass]="{
+                required:
+                  form.get('barrio').invalid && form.get('barrio').touched
+              }">
+              </ng-select>
+            </div>
+            <div>
+              <label for="altitudASNM" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Altitud
+                ASNM:</label>
+              <input type="text" appNumberInput formControlName="altitudASNM" id="altitudASNM"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Altitud ASNM"
+                [ngClass]="{'required': form.get('altitudASNM').invalid && form.get('altitudASNM').touched}">
+            </div>
+          </div>
+          <div>
+            <label for="coordenadasGeograficasYPlanas"
+              class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Coordenadas geográficas y
+              planas:</label>
+            <app-coordenada-xy #componente1 [dataForm]="onlyCoordenadas"></app-coordenada-xy>
+
+          </div>
+        </div>
+
+      </div><br>
+      <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl shadow-top-md">
+
+        <div class="flex justify-between mb-4">
+          <ul class="flex">
+            <li class="flex-row" style="padding: 5px 0 0 0;">
+                  <h1 class="text-lg font-semibold">Registro Fotografico</h1>
+                 </li>
+          </ul>
+
+
+        </div>
+        <div class="p-6">
+          <div class="grid gap-6 mb-6 md:grid-cols-1">
+            <div>
+              <label for="registroFotografico"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Registro fotográfico:</label>
+              <app-registrofotografico #registroFotografico
+                [dataForm]="onlyRegistroFotografico"></app-registrofotografico>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+  <br>
+  <div *ngIf="statusDetail==='error'" class="alert alert-danger" role="alert">
+    Ha ocurrido un error al crear el espaciosPotenciales.
+  </div>
+  <div *ngIf="isFormInValid" class="alert alert-danger" role="alert">
+    Hay campos que faltan por llenar.
+  </div>
+  <div *ngIf="statusDetail==='success'" class="alert alert-success" role="alert">
+    La operacion se ha realizado con exito.
+  </div>
+  <br>
+  <div class="flex justify-end space-x-4">
+
+    <!--<app-btn *ngIf="!isNew && mostraDelete" typeBtn="submit" color="yellow" [loading]="statusDetail === 'loading'"
+      (click)="mostrarConfirmacion()">Borrar</app-btn>-->
+      <button  type="submit" *ngIf="!isNew && mostraDelete" (click)="mostrarConfirmacion()" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Borrar</button>
+
+   <!--<app-btn *ngIf="isNew" typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+      (click)="Guardar()">Guardar</app-btn>-->
+      <button  type="submit" *ngIf="isNew" (click)="Guardar()" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Guardar</button>
+      <button  type="submit" *ngIf="!isNew && mostraUpdate" (click)="Actualizar()" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Actualizar</button>
+
+      <!--<app-btn *ngIf="!isNew && mostraUpdate" typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+      (click)="Actualizar()">Actualizar</app-btn>-->
+  </div>
+
+</form>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Eliminar</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="c('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>¿Estas seguro que deseas eliminar?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c(Borrar())">Si</button>
+  </div>
+</ng-template>

@@ -1,0 +1,701 @@
+<app-obligatorio></app-obligatorio>
+<div class="flex justify-between mb-4">
+  <h1 class="text-lg font-semibold">CensoArboreo</h1>
+</div>
+<div class="flex justify-end space-x-4">
+  <!--<app-btn *ngIf="!isNew && mostraDelete" typeBtn="submit" color="yellow" [loading]="statusDetail === 'loading'"
+    (click)="mostrarConfirmacion()">Borrar</app-btn>-->
+    <button  (click)="mostrarConfirmacion()" *ngIf="!isNew && mostraDelete" type="submit" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Borrar</button>
+
+  <!--<app-btn *ngIf="isNew" typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+    (click)="Guardar()">Guardar</app-btn>-->
+    <button  (click)="Guardar()" *ngIf="isNew" type="submit" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Guardar</button>
+    <button  (click)="Actualizar()" *ngIf="!isNew && mostraUpdate" type="submit" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Actualizar</button>
+
+    <!--<app-btn *ngIf="!isNew && mostraUpdate" typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+    (click)="Actualizar()">Actualizar</app-btn>-->
+</div>
+<br />
+<form [formGroup]="form">
+  <div style="padding: 5px 10px 10px 10px;" class="relative  top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+    <div >
+      <ul class="flex">
+        <li class="flex-row" style="padding: 5px 0 0 0;">
+              <h1 class="text-lg font-semibold">Ubicación</h1>
+               </li>
+      </ul>
+
+
+    </div>
+    <div  class="">
+
+      <div class=" p-2 rounded-lg">
+        <label for="coordenadasGeograficasYPlanas"
+          class="block text-xs font-medium text-gray-900 dark:text-gray-900">Coordenadas geográficas y planas:</label>
+        <app-coordenada-xy #coordenadasComponent [dataForm]="onlyCoordenadas"></app-coordenada-xy>
+      </div>
+
+    </div>
+
+  </div><br><br><br>
+
+    <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+        <div class="flex justify-between mb-4">
+          <ul class="flex">
+            <li class="flex-row" style="padding: 5px 0 0 0;">
+                  <h1 class="text-lg font-semibold">Clasificación</h1>
+
+            </li>
+          </ul>
+
+
+        </div>
+        <div class="p-6">
+          <div class="grid gap-6 mb-6 md:grid-cols-4">
+            <div>
+              <label for="clasificado"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Clasificacion:</label>
+              <ng-select [items]="clasificado" bindLabel="etiqueta" bindValue="id" formControlName="clasificacionId"
+                placeholder="" (change)="escucharCambios($event)" [ngClass]="{
+                  required:
+                  !field('clasificacionId').isValid()
+                }">
+              </ng-select>
+            </div>
+            <div style="display: none;">
+              <label for="numeroFustes" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Número de
+                fustes:</label>
+              <input type="text" appNumberInput formControlName="numeroFustes" id="numeroFustes"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Número de fustes" [ngClass]="{
+                  required:
+                    form.get('numeroFustes').invalid &&
+                    form.get('numeroFustes').touched
+                }" />
+            </div>
+            <div>
+              <label for="nombreComun" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Nombre
+                común:</label>
+              <input readonly type="text" formControlName="nombreComun" id="nombreComun"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nombre común" [ngClass]="{
+                  required:
+                    form.get('nombreComun').invalid &&
+                    form.get('nombreComun').touched
+                }" />
+            </div>
+            <div>
+              <label for="nombreCientifico" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Nombre
+                científico:</label>
+              <input readonly type="text" formControlName="nombreCientifico" id="nombreCientifico"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nombre científico" [ngClass]="{
+                  required:
+                    form.get('nombreCientifico').invalid &&
+                    form.get('nombreCientifico').touched
+                }" />
+            </div>
+            <div>
+              <label for="orden" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Orden:</label>
+              <input readonly type="text" formControlName="orden" id="orden"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Orden" [ngClass]="{
+                  required: form.get('orden').invalid && form.get('orden').touched
+                }" />
+            </div>
+            <div>
+              <label for="familia"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Familia:</label>
+              <input readonly type="text" formControlName="familia" id="familia"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Familia" [ngClass]="{
+                  required:
+                    form.get('familia').invalid && form.get('familia').touched
+                }" />
+            </div>
+            <div>
+              <label for="genero" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Género:</label>
+              <input readonly type="text" formControlName="genero" id="genero"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Género" [ngClass]="{
+                  required:
+                    form.get('genero').invalid && form.get('genero').touched
+                }" />
+            </div>
+            <div>
+              <label for="especie"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Especie:</label>
+              <input readonly type="text" formControlName="especie" id="especie"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Especie" [ngClass]="{
+                  required:
+                    form.get('especie').invalid && form.get('especie').touched
+                }" />
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+        <div>
+          <ul class="flex">
+            <li class="flex-row" style="padding: 5px 0 0 0;">
+                  <h1 class="text-lg font-semibold"> Información del individuo</h1>
+                 </li>
+          </ul>
+
+
+        </div>
+        <span class="font-bold" *ngIf="censoArboreo && censoArboreo.id">{{
+          censoArboreo.id
+          }}</span>
+
+          <div class="p-6">
+            <div class="grid gap-6 mb-6 md:grid-cols-4">
+              <div>
+                <label for="numeroIndividuoId"
+                  class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Número de individuo ID:</label>
+                <input type="text" formControlName="numeroIndividuoId" id="numeroIndividuoId" readonly
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Número de individuo ID" [ngClass]="{
+                    required:
+                      form.get('numeroIndividuoId').invalid &&
+                      form.get('numeroIndividuoId').touched
+                  }" />
+              </div>
+              <div>
+                <label for="alturaTotal" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Altura
+                  total:</label>
+                <input type="text" appNumberInput formControlName="alturaTotal" id="alturaTotal"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  [placeholder]="form.get('estadoMadurez').value === 'Plantula' ? 'Valor en centímetros' : 'Valor en metros'" [ngClass]="{
+                    required:
+                      form.get('alturaTotal').invalid &&
+                      form.get('alturaTotal').touched
+                  }" />
+              </div>
+              <div>
+                <label for="alturaComercial" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Altura
+                  comercial:</label>
+                <input type="text" appNumberInput formControlName="alturaComercial" id="alturaComercial"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  [placeholder]="form.get('estadoMadurez').value === 'Plantula' ? 'Valor en centímetros' : 'Valor en metros'" [ngClass]="{
+                    required:
+                      form.get('alturaComercial').invalid &&
+                      form.get('alturaComercial').touched
+                  }" />
+              </div>
+              <div>
+                <label for="cuadrilla"
+                  class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Cuadrilla:</label>
+                <input type="text" formControlName="cuadrilla" id="cuadrilla"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Cuadrilla" [ngClass]="{
+                    required:
+                      form.get('cuadrilla').invalid && form.get('cuadrilla').touched
+                  }" />
+              </div>
+              <div>
+                <label for="formaCopa" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Forma de la
+                  copa:</label>
+
+
+                <ng-select [items]="formaCopa" bindLabel="nombre" bindValue="nombre" formControlName="formaCopa"
+                  placeholder="Forma de la copa" [ngClass]="{
+                    required:
+                      form.get('formaCopa').invalid && form.get('formaCopa').touched
+                  }">
+                </ng-select>
+
+
+              </div>
+              <div>
+                <label for="diametroCopa" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Diámetro
+                  de la copa:</label>
+                <input type="text" appNumberInput formControlName="diametroCopa" id="diametroCopa"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  [placeholder]="form.get('estadoMadurez').value === 'Plantula' ? 'Valor en centímetros' : 'Valor en metros'" [ngClass]="{
+                    required:
+                      form.get('diametroCopa').invalid &&
+                      form.get('diametroCopa').touched
+                  }" />
+              </div>
+              <div>
+                <label for="alturaCopa" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Altura de la
+                  copa:</label>
+                <input type="text" appNumberInput formControlName="alturaCopa" id="alturaCopa"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  [placeholder]="form.get('estadoMadurez').value === 'Plantula' ? 'Valor en centímetros' : 'Valor en metros'" [ngClass]="{
+                    required:
+                      form.get('alturaCopa').invalid &&
+                      form.get('alturaCopa').touched
+                  }" />
+              </div>
+              <div>
+                <label for="observacionCopa"
+                  class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Observación de la copa:</label>
+
+                <textarea type="text" formControlName="observacionCopa" id="observacionCopa"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Observación de la copa" [ngClass]="{
+                    required:
+                      form.get('observacionCopa').invalid &&
+                      form.get('observacionCopa').touched
+                  }"> </textarea>
+              </div>
+              <div>
+                <label for="isGuadua" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Es Guadua:</label>
+                <input type="checkbox" formControlName="isGuadua" id="isGuadua"
+                  class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Es guadua" [ngClass]="{
+                    required:
+                      form.get('isGuadua').invalid &&
+                      form.get('isGuadua').touched
+                  }" />
+              </div>
+            </div>
+          </div>
+      </div><br><br>
+
+      <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+        <div class="flex justify-between mb-4">
+          <ul class="flex">
+            <li class="flex-row" style="padding: 5px 0 0 0;">
+                  <h1 class="text-lg font-semibold">DAP (Centímetros)</h1>
+
+
+                     <!--<app-btn *ngIf="mostrarCreate" typeBtn="submit" color="primary" [customIcon]="'faPlus'" routerLink="/app/roles/create">Agregar</app-btn>-->
+
+            </li>
+          </ul>
+
+
+        </div>
+
+        <div class="p-6">
+          <div class="grid gap-6 mb-6 md:grid-cols-4">
+            <div>
+              <label for="dap" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>CAP:</label>
+              <input type="text" appNumberInput formControlName="dap" id="dap"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="(centimetros) Min 28 Max 800" [ngClass]="{
+                  required: form.get('dap').invalid && form.get('dap').touched
+                }" />
+                  <p class="text-red-500 text-xs mt-1" *ngIf="form.get('dap').invalid && form.get('dap').touched">
+                    El valor ingresado no es válido. (centimetros) Min 28 Max 800.
+                  </p>
+            </div>
+            <div>
+              <label for="dap2" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">CAP 2:</label>
+              <input type="text" appNumberInput formControlName="dap2" id="dap2"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="(centimetros) Min 28 Max 800" [ngClass]="{
+                  required: form.get('dap2').invalid && form.get('dap2').touched
+                }" />
+                <p class="text-red-500 text-xs mt-1" *ngIf="form.get('dap2').invalid && form.get('dap2').touched">
+                  El valor ingresado no es válido. (centimetros) Min 28 Max 800.
+                </p>
+            </div>
+            <div>
+              <label for="dap3" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">CAP 3:</label>
+              <input type="text" appNumberInput formControlName="dap3" id="dap3"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="(centimetros) Min 28 Max 800" [ngClass]="{
+                  required: form.get('dap3').invalid && form.get('dap3').touched
+                }" />
+                <p class="text-red-500 text-xs mt-1" *ngIf="form.get('dap3').invalid && form.get('dap3').touched">
+                  El valor ingresado no es válido. (centimetros) Min 28 Max 800.
+                </p>
+            </div>
+            <div>
+              <label for="dap4" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">CAP 4:</label>
+              <input type="text" appNumberInput formControlName="dap4" id="dap4"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="(centimetros) Min 28 Max 800" [ngClass]="{
+                  required: form.get('dap4').invalid && form.get('dap4').touched
+                }" />
+                <p class="text-red-500 text-xs mt-1" *ngIf="form.get('dap4').invalid && form.get('dap4').touched">
+                  El valor ingresado no es válido. (centimetros) Min 28 Max 800.
+                </p>
+            </div>
+            <div>
+              <label for="ndaptotal" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">NDAP
+                total:</label>
+              <input type="text" appNumberInput formControlName="ndaptotal" id="ndaptotal"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="NDAP total" [ngClass]="{
+                  required:
+                    form.get('ndaptotal').invalid && form.get('ndaptotal').touched
+                }" />
+            </div>
+            <div>
+              <label for="daptotal" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">DAP
+                total:</label>
+              <input type="text" appNumberInput formControlName="daptotal" id="daptotal" readonly
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="DAP total" [ngClass]="{
+                  required:
+                    form.get('daptotal').invalid && form.get('daptotal').touched
+                }" />
+            </div>
+          </div>
+        </div>
+      </div><br>
+
+
+      <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+        <div class="flex justify-between mb-4">
+          <ul class="flex">
+            <li class="flex-row" style="padding: 5px 0 0 0;">
+                  <h1 class="text-lg font-semibold">Información General</h1>
+
+
+                     <!--<app-btn *ngIf="mostrarCreate" typeBtn="submit" color="primary" [customIcon]="'faPlus'" routerLink="/app/roles/create">Agregar</app-btn>-->
+
+            </li>
+          </ul>
+
+
+        </div>
+        <div class="p-6">
+          <div class="grid gap-6 mb-6 md:grid-cols-4">
+            <div>
+              <label for="altitudASNM" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Altitud
+                ASNM:</label>
+              <input type="text" appNumberInput formControlName="altitudASNM" id="altitudASNM"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Altitud ASNM" [ngClass]="{
+                  required:
+                    form.get('altitudASNM').invalid &&
+                    form.get('altitudASNM').touched
+                }" />
+            </div>
+            <div>
+              <label for="estadoFitosanitario"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Estado fitosanitario:</label>
+
+              <ng-select [items]="estadosFito" bindLabel="nombre" bindValue="nombre" formControlName="estadoFitosanitario"
+                [multiple]="true">
+              </ng-select>
+
+
+            </div>
+            <div>
+              <label for="estadoMadurez" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Estado de
+                madurez:</label>
+              <ng-select [items]="madurez" bindLabel="nombre" bindValue="nombre" formControlName="estadoMadurez"
+                (change)="changeForm('estadoMadurez')"  placeholder="Forma de la copa" [ngClass]="{
+                  required:
+                    form.get('estadoMadurez').invalid && form.get('estadoMadurez').touched
+                }">
+              </ng-select>   
+            </div>
+            <div>
+              <label for="tipoIndividuoForestal"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Tipo de individuo
+                forestal:</label>
+
+
+              <ng-select [items]="tipoIndividuo" bindLabel="nombre" bindValue="nombre"
+                formControlName="tipoIndividuoForestal" placeholder="Forma de la copa" [ngClass]="{
+                  required:
+                    form.get('tipoIndividuoForestal').invalid && form.get('tipoIndividuoForestal').touched
+                }">
+              </ng-select>
+
+
+            </div>
+            <div>
+              <label for="departamento"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Departamento:</label>
+              <input type="text" formControlName="departamento" id="departamento"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Departamento" [ngClass]="{
+                  required:
+                    form.get('departamento').invalid &&
+                    form.get('departamento').touched
+                }" />
+            </div>
+            <div>
+              <label for="ciudad" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Ciudad:</label>
+              <input type="text" formControlName="ciudad" id="ciudad"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Ciudad" [ngClass]="{
+                  required:
+                    form.get('ciudad').invalid && form.get('ciudad').touched
+                }" />
+            </div>
+            <div>
+              <label for="tipoAglomeracion" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Tipo
+                de aglomeración:</label>
+              <input type="text" formControlName="tipoAglomeracion" id="tipoAglomeracion"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Tipo de aglomeración" [ngClass]="{
+                  required:
+                    form.get('tipoAglomeracion').invalid &&
+                    form.get('tipoAglomeracion').touched
+                }" />
+            </div>
+
+            <div>
+              <label for="comuna" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Comuna:</label>
+              <ng-select [items]="Comunas" bindLabel="descripcion" bindValue="descripcion" formControlName="comuna"
+                placeholder="Comuna" (change)="changeLeagueOwner($event)" [ngClass]="{
+                    required:
+                      form.get('comuna').invalid && form.get('comuna').touched
+                  }">
+              </ng-select>
+            </div>
+            <div>
+              <label for="barrio" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Barrio:</label>
+              <ng-select [items]="Barrios" bindLabel="descripcion" bindValue="descripcion" formControlName="barrio"
+                placeholder="Barrio" [ngClass]="{
+                required:
+                  form.get('barrio').invalid && form.get('barrio').touched
+              }">
+              </ng-select>
+            </div>
+            <div>
+              <label for="tipoEmplazamiento" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Tipo
+                de emplazamiento:</label>
+
+
+              <ng-select [items]="tipoEmpla" bindLabel="nombre" bindValue="nombre" formControlName="tipoEmplazamiento"
+                placeholder="Tipode emplazamiento:" [ngClass]="{
+                    required:
+                      form.get('tipoEmplazamiento').invalid && form.get('tipoEmplazamiento').touched
+                  }">
+              </ng-select>
+
+            </div>
+            <div>
+              <label for="observacionTipoEmplazamiento"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Observación del tipo de
+                emplazamiento:</label>
+              <textarea type="text" formControlName="observacionTipoEmplazamiento" id="observacionTipoEmplazamiento"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Observación del tipo de emplazamiento" [ngClass]="{
+                  required:
+                    form.get('observacionTipoEmplazamiento').invalid &&
+                    form.get('observacionTipoEmplazamiento').touched
+                }"> </textarea>
+            </div>
+            <div>
+              <label for="infraestructuraAfectada"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Infraestructura afectada:</label>
+
+              <ng-select [items]="infraAfec" bindLabel="nombre" bindValue="nombre"
+                formControlName="infraestructuraAfectada" [multiple]="true" placeholder="Infraestructura afectada:"
+                [ngClass]="{
+                    required:
+                      form.get('infraestructuraAfectada').invalid && form.get('infraestructuraAfectada').touched
+                  }">
+              </ng-select>
+
+            </div>
+            <div>
+              <label for="observacionInfraestructuraAfectada"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Observación de la infraestructura
+                afectada:</label>
+              <textarea type="text" formControlName="observacionInfraestructuraAfectada"
+                id="observacionInfraestructuraAfectada"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Observación de la infraestructura afectada" [ngClass]="{
+                  required:
+                    form.get('observacionInfraestructuraAfectada').invalid &&
+                    form.get('observacionInfraestructuraAfectada').touched
+                }"> </textarea>
+            </div>
+            <div>
+              <label for="apendiceCites" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Apéndice
+                CITES:</label>
+              <input type="checkbox" formControlName="apendiceCites" id="apendiceCites"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Apéndice CITES" [ngClass]="{
+                  required:
+                    form.get('apendiceCites').invalid &&
+                    form.get('apendiceCites').touched
+                }" />
+            </div>
+            <div>
+              <label for="categoriaUicn" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Categoría
+                UICN:</label>
+              <input type="checkbox" formControlName="categoriaUicn" id="categoriaUicn"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Categoría UICN" [ngClass]="{
+                  required:
+                    form.get('categoriaUicn').invalid &&
+                    form.get('categoriaUicn').touched
+                }" />
+            </div>
+            <div>
+              <label for="categoriaMinisterioResolucion01922014"
+                class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Categoría Ministerio Resolución
+                019/2014:</label>
+              <input type="checkbox" formControlName="categoriaMinisterioResolucion01922014"
+                id="categoriaMinisterioResolucion01922014"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Categoría Ministerio Resolución 019/2014" [ngClass]="{
+                  required:
+                    form.get('categoriaMinisterioResolucion01922014').invalid &&
+                    form.get('categoriaMinisterioResolucion01922014').touched
+                }" />
+            </div>
+            <div>
+              <label for="especieEndemica" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Especie
+                endémica:</label>
+              <input type="checkbox" formControlName="especieEndemica" id="especieEndemica"
+                class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Especie endémica" [ngClass]="{
+                  required:
+                    form.get('especieEndemica').invalid &&
+                    form.get('especieEndemica').touched
+                }" />
+            </div>
+            <div>
+              <label for="origen" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Origen:</label>
+              <ng-select [items]="origenes" bindLabel="nombre" bindValue="nombre" formControlName="origen"
+                placeholder="Origen" [ngClass]="{
+                    required:
+                      form.get('origen').invalid && form.get('origen').touched
+                  }">
+              </ng-select>
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+ <br><br>
+  <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+    <div class="flex justify-between mb-4">
+      <ul class="flex">
+        <li class="flex-row" style="padding: 5px 0 0 0;">
+              <h1 class="text-lg font-semibold">Observaciones</h1>
+
+        </li>
+      </ul>
+
+
+    </div>
+
+    <div class="p-6">
+      <div class="grid gap-6 mb-6 md:grid-cols-4">
+        <div>
+          <label for="observacion"
+            class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Observación:</label>
+          <textarea type="text" formControlName="observacion" id="observacion"
+            class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Observación" [ngClass]="{
+              required:
+                form.get('observacion').invalid &&
+                form.get('observacion').touched
+            }"> </textarea>
+        </div>
+        <div>
+          <label for="fecha" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500 text-xl">*</strong>Fecha:</label>
+          <input type="datetime-local" formControlName="fecha" id="fecha"
+            class="text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Fecha" [ngClass]="{
+              required: form.get('fecha').invalid && form.get('fecha').touched
+            }" />
+        </div>
+        <div>
+          <label for="recomendacionesParaManejoSilvicultural"
+            class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900">Recomendaciones para el manejo
+            silvicultural:</label>
+
+
+          <ng-select [items]="recomendacionesParaManejoSilviculturalLista" bindLabel="nombre" bindValue="nombre"
+            formControlName="recomendacionesParaManejoSilvicultural"
+            placeholder="Recomendaciones para el manejo silvicultural" [multiple]="true" [ngClass]="{
+              required:
+                form.get('recomendacionesParaManejoSilvicultural').invalid && form.get('recomendacionesParaManejoSilvicultural').touched
+            }">
+          </ng-select>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div style="padding: 5px 10px 10px 10px;" class="relative    top-0 flex flex-col bg-clip-border rounded-lg bg-white text-gray-700 shadow-xl">
+
+   <div class="flex justify-between mb-4">
+     <ul class="flex">
+       <li class="flex-row" style="padding: 5px 0 0 0;">
+             <h1 class="text-lg font-semibold">Registro Fotográfico</h1>
+          </li>
+     </ul>
+
+   </div>
+
+   <div class="p-12">
+     <div class="grid gap-6 mb-6 md:grid-cols-1">
+
+
+
+         <app-registrofotografico #registroFotografico [dataForm]="onlyRegistroFotografico"></app-registrofotografico>
+
+
+     </div>
+   </div>
+ </div>
+
+  <br />
+  <div *ngIf="statusDetail === 'error'" class="alert alert-danger" role="alert">
+    Ha ocurrido un error al crear el censoArboreo.
+  </div>
+  <div *ngIf="isFormInValid" class="alert alert-danger" role="alert">
+    Hay campos que faltan por llenar.
+  </div>
+  <div *ngIf="statusDetail === 'success'" class="alert alert-success" role="alert">
+    La operacion se ha realizado con exito.
+  </div>
+  <br />
+  <div class="flex justify-end space-x-4">
+    <!--<app-btn *ngIf="!isNew && mostraDelete" typeBtn="submit" color="yellow" [loading]="statusDetail === 'loading'"
+    (click)="mostrarConfirmacion()">Borrar</app-btn>-->
+    <button  (click)="mostrarConfirmacion()" *ngIf="!isNew && mostraDelete" type="submit" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Borrar</button>
+
+  <!--<app-btn *ngIf="isNew" typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+    (click)="Guardar()">Guardar</app-btn>-->
+    <button  (click)="Guardar()" *ngIf="isNew" type="submit" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Guardar</button>
+    <button  (click)="Actualizar()" *ngIf="!isNew && mostraUpdate" type="submit" class=" w-48 w-full text-white focus:ring-4 focus:outline-none font-medium px-2.5 py-2.5 text-center" >Actualizar</button>
+
+    <!--<app-btn *ngIf="!isNew && mostraUpdate" typeBtn="submit" color="primary" [loading]="statusDetail === 'loading'"
+    (click)="Actualizar()">Actualizar</app-btn>-->
+  </div>
+</form>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Eliminar</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="c('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>¿Estas seguro que deseas eliminar?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">
+      No
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)="c(Borrar())">
+      Si
+    </button>
+  </div>
+</ng-template>
