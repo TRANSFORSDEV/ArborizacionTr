@@ -1,4 +1,4 @@
-<nav style="background-color: #8092a5; border-color: #8092a5;" class="fixed top-0  w-full bg-white border-b border-gray-200 dark:border-gray-700">
+<nav style="background-color: #8092a5; border-color: #8092a5;" class="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:border-gray-700">
   <!-- <div class="px-3 py-3 lg:px-5 lg:pl-3"> -->
     <div class="">
     <div class="flex items-center items-stretch justify-between" style="align-items: stretch; height: 5em;">
@@ -91,16 +91,17 @@
 </button> -->
 <!-- MenuBar -->
 <div [ngClass]="{'menu-visible': menuVisible, 'menu-hidden': !menuVisible}"
-  class=" border-r border-gray-200" style="padding-top: 100px; position:relative"
-  >
+class="border-r border-gray-200 relative relative z-30 mt100"
+>
+
   <div class="px-3 pb-4">
     <ul class="space-y-2 font-medium" style="  
-    backdrop-filter: blur(8px); background-color: #ffffff33;
+     background-color: #ffffff33;
     display: flex;
     justify-content: center; /* Alinea los elementos hacia la derecha */
     list-style-type: none; 
     border-radius: 8px;">
-      <li style="--tw-space-y-reverse: 0;
+      <li (click)="active = 1" style="--tw-space-y-reverse: 0;
       margin-bottom: calc(0.5rem*var(--tw-space-y-reverse));
       margin-top: calc(0.5rem*(1 - var(--tw-space-y-reverse)));">
         <a href="#/app/home"
@@ -115,9 +116,9 @@
         </a>
       </li>
       <li>
-        <app-dropdown-menu label="Administracion" [dropdownId]="'001'">
+        <app-dropdown-menu (click)="active = 2"  label="Administracion" [dropdownId]="'001'" [isActive]="active == 2">
       <li>
-        <a *ngIf="menuusuario" href="#/app/usuarios"
+        <a *ngIf="menuusuario" href="#/app/usuarios" 
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group   ">Usuarios</a>
       </li>
       <li>
@@ -136,7 +137,7 @@
       </app-dropdown-menu>
       </li>
       <li>
-        <app-dropdown-menu label="Configuraciones" [dropdownId]="'004'">
+        <app-dropdown-menu (click)="active = 3" label="Configuraciones" [dropdownId]="'004'" [isActive]="active == 3">
       <!-- <li>
         <a *ngIf="menumaestra" href="#/app/maestra"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Maestra</a>
@@ -246,7 +247,7 @@
       </app-dropdown-menu>
       </li>
       <li>
-        <app-dropdown-menu label="Arborización" [dropdownId]="'002'">
+        <app-dropdown-menu (click)="active = 4" label="Arborización" [dropdownId]="'002'" [isActive]="active == 4">
       <li>
         <a *ngIf="menucenso" href="#/app/censo"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Censo
@@ -259,7 +260,7 @@
       </app-dropdown-menu>
       </li>
       <li>
-        <app-dropdown-menu label="Actividades Silviculturales" [dropdownId]="'003'">
+        <app-dropdown-menu (click)="active = 5" label="Actividades Silviculturales" [dropdownId]="'003'" [isActive]="active == 5">
 
       <li>
         <a href="#/app/actividades/lista/Siembra"
@@ -300,7 +301,7 @@
       </app-dropdown-menu>
       </li>
       <li>
-        <app-dropdown-menu label="Reportes" [dropdownId]="'003'">
+        <app-dropdown-menu (click)="active = 6" label="Reportes" [dropdownId]="'003'" [isActive]="active == 6">
 
           <!-- <li>
         <a  *ngIf="reportes" href="#/app/reportes"

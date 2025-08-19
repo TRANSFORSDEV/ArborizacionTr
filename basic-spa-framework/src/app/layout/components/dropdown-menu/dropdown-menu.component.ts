@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class DropdownMenuComponent {
   @Input() label: string;
   @Input() dropdownId: string;
+  @Input() isActive: boolean = false;
 
   isDropdownOpen = false;
 

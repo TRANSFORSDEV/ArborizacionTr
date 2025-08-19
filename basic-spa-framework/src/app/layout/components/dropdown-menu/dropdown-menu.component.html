@@ -28,6 +28,7 @@
 </button>
 
 <ul
+  *ngIf="isActive"
   [id]="dropdownId"
   class="hidden py-2 space-y-2"
   [class.hidden]="!isDropdownOpen"

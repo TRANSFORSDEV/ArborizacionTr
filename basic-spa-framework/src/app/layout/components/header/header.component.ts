@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit{
   menucenso: boolean = false;
   reportes: boolean = false;
   public menuVisible: boolean = false;
+  active: number = 0;
+
   constructor(private tokenService: TokenService,
     private router: Router,
     private elementRef: ElementRef,
