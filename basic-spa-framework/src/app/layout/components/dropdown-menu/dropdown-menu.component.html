@@ -33,6 +33,7 @@
   class="hidden py-2 space-y-2"
   [class.hidden]="!isDropdownOpen"
   style="position: fixed;z-index: 10000; backdrop-filter: blur(8px); background-color: #ffffff33;"
+  (click)="closeDropdown()"
 >
   <ng-content></ng-content>
 </ul>

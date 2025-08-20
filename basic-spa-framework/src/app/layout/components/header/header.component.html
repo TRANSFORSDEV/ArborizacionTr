@@ -49,7 +49,7 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.37 21.14C6.56 20.23 7.88999 19.51 9.35999 18.99C10.83 18.47 12.37 18.2 13.98 18.2C15.59 18.2 17.13 18.46 18.6 18.99C20.07 19.52 21.4 20.23 22.59 21.14C23.41 20.18 24.04 19.1 24.5 17.88C24.96 16.66 25.1801 15.37 25.1801 14C25.1801 10.9 24.09 8.25001 21.91 6.07001C19.73 3.89001 17.09 2.80001 13.98 2.80001C10.87 2.80001 8.23005 3.89001 6.05005 6.07001C3.87005 8.25001 2.78003 10.89 2.78003 14C2.78003 15.38 3.00996 16.67 3.45996 17.88C3.90996 19.09 4.54999 20.18 5.37 21.14ZM13.98 15.4C12.6 15.4 11.44 14.93 10.5 13.98C9.56 13.03 9.07996 11.87 9.07996 10.5C9.07996 9.13001 9.55 7.96001 10.5 7.02001C11.45 6.08001 12.61 5.60001 13.98 5.60001C15.35 5.60001 16.52 6.07001 17.46 7.02001C18.4 7.97001 18.88 9.13001 18.88 10.5C18.88 11.87 18.41 13.04 17.46 13.98C16.51 14.92 15.35 15.4 13.98 15.4ZM13.98 28C12.04 28 10.22 27.63 8.52002 26.9C6.82002 26.17 5.33996 25.17 4.07996 23.91C2.81996 22.65 1.81997 21.17 1.08997 19.46C0.359966 17.75 -0.0100098 15.94 -0.0100098 14C-0.0100098 12.06 0.359966 10.24 1.08997 8.54001C1.81997 6.84001 2.81996 5.36001 4.07996 4.10001C5.33996 2.84001 6.82002 1.84001 8.52002 1.11001C10.22 0.380012 12.04 0.0100098 13.98 0.0100098C15.92 0.0100098 17.7399 0.380012 19.4399 1.11001C21.1399 1.84001 22.62 2.84001 23.88 4.10001C25.14 5.36001 26.14 6.84001 26.87 8.54001C27.6 10.24 27.97 12.06 27.97 14C27.97 15.94 27.6 17.76 26.87 19.46C26.14 21.16 25.14 22.65 23.88 23.91C22.62 25.17 21.1399 26.17 19.4399 26.9C17.7399 27.63 15.92 28 13.98 28Z" fill="white"/>
               </svg>
-                
+
               <!-- <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="white">
                 <path
                   d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
@@ -95,11 +95,11 @@ class="border-r border-gray-200 relative relative z-30 mt100"
 >
 
   <div class="px-3 pb-4">
-    <ul class="space-y-2 font-medium" style="  
+    <ul class="space-y-2 font-medium" style="
      background-color: #ffffff33;
     display: flex;
     justify-content: center; /* Alinea los elementos hacia la derecha */
-    list-style-type: none; 
+    list-style-type: none;
     border-radius: 8px;">
       <li (click)="active = 1" style="--tw-space-y-reverse: 0;
       margin-bottom: calc(0.5rem*var(--tw-space-y-reverse));
@@ -116,9 +116,9 @@ class="border-r border-gray-200 relative relative z-30 mt100"
         </a>
       </li>
       <li>
-        <app-dropdown-menu (click)="active = 2"  label="Administracion" [dropdownId]="'001'" [isActive]="active == 2">
+        <app-dropdown-menu (click)="active = 2"  label="Administracion" [dropdownId]="'001'" [isActive]="active == 2 " (closed)="active = 0">
       <li>
-        <a *ngIf="menuusuario" href="#/app/usuarios" 
+        <a *ngIf="menuusuario" href="#/app/usuarios"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group   ">Usuarios</a>
       </li>
       <li>
