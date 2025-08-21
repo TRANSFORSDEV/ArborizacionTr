@@ -322,7 +322,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
       return;
     }
 
-    if(!this.registroFotograficoAntes.isValid() || !this.registroFotograficoDurante.isValid() || !this.registroFotograficoDespues.isValid()) {
+   /*  if(!this.registroFotograficoAntes.isValid() || !this.registroFotograficoDurante.isValid() || !this.registroFotograficoDespues.isValid()) {
       let text = "";
       if(!this.registroFotograficoAntes.isValid()){
         text = text + " antes, "
@@ -336,7 +336,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
       text = text.substring(0,text.length - 2);
       this.mostrarNecesitaImagenes(text);
       return;
-    }
+    } */
     
 
     ///%%%%%%%%%
@@ -411,7 +411,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
       return;
     }
     
-
+/* 
     if(!this.registroFotograficoAntes.isValid() || !this.registroFotograficoDurante.isValid() || !this.registroFotograficoDespues.isValid()){
 
       let text = "";
@@ -429,7 +429,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
         this.mostrarNecesitaImagenes(text.substring(0,text.length-2));
         return
       }
-    }
+    } */
 
     
 
