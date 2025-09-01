@@ -8,6 +8,7 @@ import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 import Point from '@arcgis/core/geometry/Point';
 import PictureMarkerSymbol from "@arcgis/core/symbols/PictureMarkerSymbol.js";
 import { jsPDF } from "jspdf";
+import Extent from "@arcgis/core/geometry/Extent";
 
 
 @Injectable({
@@ -113,12 +114,12 @@ export class EsriMapService {
 
     // console.log(longitude,latitude )
       // Center the view at the point and zoom to an appropriate level
-       this.view.goTo({
+       /* this.view.goTo({
          center: point,
          zoom: 14 // or any other zoom level you find appropriate
        }).catch((error: any) => {
          console.error('Error al centrar el mapa en el punto:', error);
-       });
+       }); */
 
     if (this.isPointInView(point)) {
       this.createAndAddGraphic2(point);
@@ -283,7 +284,16 @@ export class EsriMapService {
     }
   }
 
+  public getExtentFromPoints(coords: Array<{ longitud: number, latitud: number }>): Extent {
+    const xs = coords.map(c => c.longitud);
+    const ys = coords.map(c => c.latitud);
+  
+    return new Extent({
+      xmin: Math.min(...xs),
+      ymin: Math.min(...ys),
+      xmax: Math.max(...xs),
+      ymax: Math.max(...ys),
+      spatialReference: { wkid: 4326 }
+    });
+  }
 }
-
-
-

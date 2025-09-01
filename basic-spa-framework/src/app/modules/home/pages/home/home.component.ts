@@ -14,21 +14,19 @@ import { BasicTableService } from 'src/app/core/services/basictable.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
-  listaCoordenadas:CoordenadaDto[]=[];
-  statusDetail: RequestStatus = 'init';
-  faSpinner = faSpinner;
   form: FormGroup;
+  faSpinner = faSpinner;
+  statusDetail: RequestStatus = 'init';
+  listaCoordenadas: CoordenadaDto[] = [];
+  Comunas: GenericPredecesorSucesorTableDto[];
+  Barrios: GenericPredecesorSucesorTableDto[];
 
-  Comunas:GenericPredecesorSucesorTableDto[];
-  Barrios:GenericPredecesorSucesorTableDto[];
-
-
-  constructor(private esriMapService: EsriMapService,
-    private censoService: CensoArboreoService,
+  constructor(
     private formbuilder: FormBuilder,
-    private basicTableService: BasicTableService)
-  {
+    private esriMapService: EsriMapService,
+    private censoService: CensoArboreoService,
+    private basicTableService: BasicTableService
+  ) {
     this.BuildForm();
     this.getComunas();
   }
@@ -38,13 +36,13 @@ export class HomeComponent {
       guadua: ['false', []],
       barrio: ['', []],
       comuna: ['', []],
-    })
+    });
   }
 
   getComunas() {
     this.basicTableService.getByTable('Comuna').subscribe(
       result => {
-        this.Comunas = result.data
+        this.Comunas = result.data;
       }
     );
   }
@@ -52,20 +50,28 @@ export class HomeComponent {
   getArbolesCiudad() {
     this.statusDetail = 'loading';
     this.esriMapService.resetMapView();
-    this.censoService.getAllCoordenadas(this.field("comuna").get().value, this.field("barrio").get().value, this.field("guadua").get().value).subscribe(
-      result => {
-        this.listaCoordenadas = result.data
-        this.listaCoordenadas.forEach(coord => {
-          this.esriMapService.addPoint(coord.longitud, coord.latitud);
+    this.censoService.getAllCoordenadas(this.field("comuna").get().value, this.field("barrio").get().value, this.field("guadua").get().value).subscribe(result => {
+      this.listaCoordenadas = result.data;
+
+      this.listaCoordenadas.forEach(coord => {
+        this.esriMapService.addPoint(coord.longitud, coord.latitud);
+      });
+
+      if (this.listaCoordenadas.length > 0) {
+        const extent = this.esriMapService.getExtentFromPoints(this.listaCoordenadas);
+        this.esriMapService.view?.goTo(extent).catch(err => {
+          console.error('Error al centrar en el barrio:', err);
         });
-        this.statusDetail = 'init';
       }
-    );
+      this.statusDetail = 'init';
+    });
   }
 
-  changeLeagueOwner(event:any){
-    if(!event)
-    return;
+  changeLeagueOwner(event: any) {
+    if (!event) {
+      return;
+    }
+
     this.basicTableService.getByTableByIdPredecesor('Barrio',event.id).subscribe(
       result => {
         this.form.patchValue({ barrio: '' });
@@ -74,15 +80,14 @@ export class HomeComponent {
     );
   }
 
-
   async ngAfterViewInit() {
     await this.esriMapService.initializeMap('containerId'); // Asegúrate de pasar el ID correcto del contenedor
     this.esriMapService.resetMapView();
-     //this.addAllPoints();
+    //this.addAllPoints();
   }
-
-  Imprimir(){
-   this.esriMapService.captureMapAsPDF();
+  
+  Imprimir() {
+    this.esriMapService.captureMapAsPDF();
   }
 
   field(name: string) {
@@ -106,13 +111,8 @@ export class HomeComponent {
       }
     };
   }
-
+  
   changeBasemap(event: Event) {
-   this.esriMapService.changeBasemap(event);
+    this.esriMapService.changeBasemap(event);
   }
-
 }
-
-
-
-
