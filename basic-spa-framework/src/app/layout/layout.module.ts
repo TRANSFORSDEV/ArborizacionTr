@@ -6,6 +6,7 @@ import { WorkspaceComponent } from './pages/workspace/workspace.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.
     WorkspaceComponent,
     HeaderComponent,
     FooterComponent,
-    DropdownMenuComponent
+    DropdownMenuComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

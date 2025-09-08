@@ -1,0 +1,153 @@
+@media (max-width: 767px) {
+  .navbar {
+    display: none;
+  }
+  
+  .dropbtn {
+    width: 100vw;
+  }
+}
+
+.navbar-mobile {
+  display: flex;
+  flex-direction: column;
+    margin-top: 80px;
+    background-color: #ffffff33;
+  backdrop-filter: blur(8px);
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  
+  }
+  
+
+
+
+@media (min-width: 768px) {
+  .navbar {
+    margin-top: 100px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: #ffffff33;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    margin-inline: 0.75rem;
+  }
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgba(12, 195, 255, 0.2392156863);
+  border-radius: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff33;
+  backdrop-filter: blur(8px);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(12, 195, 255, 0.2392156863);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+/*  */
+.dropdown-content-mobile {
+  margin-left: 1rem;
+}
+
+.dropdown-content-mobile a {
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content-mobile a:hover {
+  background-color: #e5e7eb;
+}
+
+.btn-mob {
+    background-color: #ffffff33;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(12, 195, 255, 0.2392156863);
+
+}
+
+/* Clase para la rotación de la flecha */
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Animaciones suaves */
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform {
+  transition-property: transform;
+}
+
+.max-h-0 {
+  max-height: 0;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

@@ -26,6 +26,14 @@
   .menu-hidden {
     transform: translateX(0);
   }
+
+  .pad {
+    padding-left: 3em;
+  }
+
+  .use {
+    width: 30em !important;
+  }
 }
 
 
@@ -36,4 +44,13 @@ app-dropdown-menu{
 
 .mt100 {
   margin-top: 100px;
+}
+
+.pad {
+  padding-left: .5em;
+}
+
+.use {
+  width: 5em;
+  background-color: #02ADB9;;justify-content: center;
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthUser } from 'src/app/core/models/auth-user.model';
 import { TokenService } from 'src/app/core/services/token.service';
@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit{
   public menuVisible: boolean = false;
   active: number = 0;
 
+  @Output() visible = new EventEmitter<boolean>();
+
+
   constructor(private tokenService: TokenService,
     private router: Router,
     private elementRef: ElementRef,
@@ -51,8 +54,8 @@ export class HeaderComponent implements OnInit{
   }
 
   toggleMenu() {
-    console.log("sidebar")
     this.menuVisible = !this.menuVisible;
+    this.visible.emit(this.menuVisible);
   }
 
   ngOnInit(): void {

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./workspace.component.scss']
 })
 export class WorkspaceComponent {
-
+  menuVisible: boolean = false;
 }

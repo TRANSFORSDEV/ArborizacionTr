@@ -2,7 +2,7 @@
   <!-- <div class="px-3 py-3 lg:px-5 lg:pl-3"> -->
     <div class="">
     <div class="flex items-center items-stretch justify-between" style="align-items: stretch; height: 5em;">
-      <div class="flex items-center justify-start" style="padding-left: 3em;">
+      <div class="flex items-center justify-start pad">
         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" (click)="toggleMenu()"
           type="button"
           class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200   dark:focus:ring-gray-600">
@@ -25,7 +25,7 @@
 
         </a>
       </div>
-      <div class="flex items-center items-stretch " style="background-color: #02ADB9;width: 30em;justify-content: center;">
+      <div class="flex items-center items-stretch use">
         <div class="relative">
           <div>
             <!-- <div class="btn-back">
@@ -90,7 +90,7 @@
   </svg>
 </button> -->
 <!-- MenuBar -->
-<div [ngClass]="{'menu-visible': menuVisible, 'menu-hidden': !menuVisible}"
+<!-- <div [ngClass]="{'menu-visible': menuVisible, 'menu-hidden': !menuVisible}"
 class="border-r border-gray-200 relative relative z-30 mt100"
 >
 
@@ -106,12 +106,7 @@ class="border-r border-gray-200 relative relative z-30 mt100"
       margin-top: calc(0.5rem*(1 - var(--tw-space-y-reverse)));">
         <a href="#/app/home"
           class="flex items-center p-2 text-gray-900 rounded-lg  ">
-          <svg
-            class="w-6 h-6 text-gray-500 transition duration-75 "
-            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-          </svg>
+          <img src="assets/svg/dash.svg" alt="" class="w-6 h-6 text-gray-500 transition duration-75">
           <span class="ml-3">Dashboard</span>
         </a>
       </li>
@@ -129,19 +124,19 @@ class="border-r border-gray-200 relative relative z-30 mt100"
         <a *ngIf="menupermisos" href="#/app/permisos"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Permisos</a>
       </li>
-      <!-- <li>
+      <li>
         <a *ngIf="menumodules" href="#/app/modules"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Modulos</a>
-      </li> -->
+      </li>
 
       </app-dropdown-menu>
       </li>
       <li>
         <app-dropdown-menu (click)="active = 3" label="Configuraciones" [dropdownId]="'004'" [isActive]="active == 3">
-      <!-- <li>
+      <li>
         <a *ngIf="menumaestra" href="#/app/maestra"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Maestra</a>
-      </li> -->
+      </li>
       <li>
         <a href="#/app/detalle/by/0475362b-ab82-4d1e-8a32-cbfc0f5bd942"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Tipo
@@ -303,10 +298,10 @@ class="border-r border-gray-200 relative relative z-30 mt100"
       <li>
         <app-dropdown-menu (click)="active = 6" label="Reportes" [dropdownId]="'003'" [isActive]="active == 6">
 
-          <!-- <li>
+          <li>
         <a  *ngIf="reportes" href="#/app/reportes"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Censo Arboleo</a>
-      </li> -->
+      </li>
       <li>
         <a href="#/app/reportes/masreportes"
           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 ">Reportes</a>
@@ -315,11 +310,13 @@ class="border-r border-gray-200 relative relative z-30 mt100"
       </li>
 
     </ul>
-    <!-- <a href="https://arb.transfors.co/file/MANUAL%20PROYECTO%20ARBORIZACIÓN.pdf" style="
+    <a href="https://arb.transfors.co/file/MANUAL%20PROYECTO%20ARBORIZACIÓN.pdf" style="
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
-    justify-content: center;    left: 0;" class="flex items-center p-2 text-gray-900 rounded-lg  ">Manual </a> -->
+    justify-content: center;    left: 0;" class="flex items-center p-2 text-gray-900 rounded-lg  ">Manual </a>
   </div>
-</div>
+</div> -->
+
+<app-menu [menuVisible]="menuVisible" (visible)="toggleMenu()"></app-menu>

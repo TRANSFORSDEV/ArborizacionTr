@@ -1,0 +1,57 @@
+<div class="navbar border-r border-gray-200 mt100">
+  <div *ngFor="let item of menu; let i = index">
+    <div *ngIf="!item.subMenu">
+      <a [href]="item.ruta" class="flex items-center p-2 text-gray-900 rounded-lg"> 
+        <img src="assets/svg/{{item.icono}}.svg" alt="" class="w-6 h-6 text-gray-500 transition duration-75">
+        <span class="flex-1 ml-3 text-left whitespace-nowrap text-gray-900 font-medium">{{ item.titulo }}</span>
+      </a>
+    </div>
+
+    <div class="dropdown" *ngIf="item.subMenu">
+      <button class="dropbtn flex items-center p-2 text-gray-900 rounded-lg">
+        <img src="assets/svg/{{item.icono}}.svg" alt="" class="w-6 h-6 text-gray-500 transition duration-75">
+        <span class="flex-1 ml-3 text-left whitespace-nowrap text-gray-900 font-medium">{{ item.titulo }}</span>
+        <img src="assets/svg/flecha.svg" alt="" class="w-6 h-6 text-gray-500 transition duration-75">
+      </button>
+      
+      <div class="dropdown-content">
+        <div *ngFor="let subItem of item.subMenu; let j = index">
+          <div *ngIf="subItem.permisos">
+            <a [href]="subItem.ruta"> 
+              <span class="text-gray-900 font-medium">{{ subItem.titulo }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="navbar-mobile" *ngIf="menuVisible">
+  <div *ngFor="let item of menu; let i = index">
+    <div *ngIf="!item.subMenu" class="w-full">
+      <a [href]="item.ruta" class="flex items-center p-2 text-gray-900 rounded-lg"> 
+        <img src="assets/svg/{{item.icono}}.svg" alt="" class="w-6 h-6 text-gray-500 transition duration-75">
+        <span class="flex-1 ml-3 text-left whitespace-nowrap text-gray-900 font-medium">{{ item.titulo }}</span>
+      </a>
+    </div>
+    
+    <div class="dropdown" *ngIf="item.subMenu">
+      <button class="dropbtn flex items-center p-2 text-gray-900 rounded-lg w-full" (click)="toggleDropdown(i)">
+        <img src="assets/svg/{{item.icono}}.svg" alt="" class="w-6 h-6 text-gray-500 transition duration-75">
+        <span class="flex-1 ml-3 text-left whitespace-nowrap text-gray-900 font-medium">{{ item.titulo }}</span>
+        <img src="assets/svg/flecha.svg" alt="" class="w-6 h-6 text-gray-500 transition-transform duration-300" [class.rotate-180]="activeDropdowns[i]">
+      </button>
+
+      <div class="dropdown-content-mobile transition-all duration-300 ease-in-out overflow-hidden" [class.max-h-0]="!activeDropdowns[i]" [class.max-h-96]="activeDropdowns[i]" [class.opacity-0]="!activeDropdowns[i]" [class.opacity-100]="activeDropdowns[i]">
+        <div *ngFor="let subItem of item.subMenu; let j = index" class="pl-4">
+          <div *ngIf="subItem.permisos">
+            <button class="w-full flex items-center p-2 text-gray-700 hover:bg-gray-100 text-left btn-mob" (click)="onSubItemClick(i, subItem)">   
+              <span class="text-gray-900 font-medium">{{ subItem.titulo }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

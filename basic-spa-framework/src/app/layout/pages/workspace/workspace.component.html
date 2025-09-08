@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header [ngClass]="{'mobile': menuVisible}"  (visible)="menuVisible = $event"></app-header>
 
-<div class="p-4">
+<div class="p-4" [ngClass]="{'hidden': menuVisible, 'mt20': !menuVisible}">
   <div class="p-4 border-gray-200 bg-clip-border rounded-lg mt-14" style="backdrop-filter: blur(8px); background-color: #ffffff99;">
 
     <router-outlet></router-outlet>
