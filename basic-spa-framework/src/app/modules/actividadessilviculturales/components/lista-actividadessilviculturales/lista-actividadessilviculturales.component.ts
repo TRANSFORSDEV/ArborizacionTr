@@ -42,7 +42,7 @@ export class ListaActividadesSilviculturalesComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe((params: Params) => {
-      debugger;
+      ;
       this.tipoActividad = params['tipoActividad'];
       this.routeAdd = "/app/actividades/create/" + this.tipoActividad;
       this.editPath = '/app/actividades/edit/'+ this.tipoActividad + "/";

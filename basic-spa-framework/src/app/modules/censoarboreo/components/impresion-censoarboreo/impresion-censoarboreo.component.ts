@@ -471,7 +471,7 @@ downloadImage(indice) {
     }
 
     let clonForm = this.formbuilder.group(this.form.getRawValue());
-    debugger;
+    ;
     clonForm.value['coordenada'] = this.coordenadas.getFormValue();
     clonForm.value['fotos'] = new Array<RegistroFotograficoCensoDto>();
 
@@ -487,7 +487,7 @@ downloadImage(indice) {
         formData.append(`censo.${prop}`, this.form.value[prop].toString());
       }
     }*/
-    debugger;
+    ;
 
 
     clonForm.value["estadoFitosanitario"]=JSON.stringify(this.form.value.estadoFitosanitario);
@@ -500,7 +500,7 @@ downloadImage(indice) {
 
     formData.append('fullobject', JSON.stringify(clonForm.value));
     formData.append('infofotos', JSON.stringify(infoFotos));
-    debugger;
+    ;
     this.create.emit(formData);
   }
 

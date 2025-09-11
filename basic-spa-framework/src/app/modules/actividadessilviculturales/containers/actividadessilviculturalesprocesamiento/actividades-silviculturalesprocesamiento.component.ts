@@ -53,13 +53,13 @@ constructor(private activatedRoute: ActivatedRoute,
   {
     let dataCast : ActividadesSilviculturalesDto = data;
 
-    debugger;
+    ;
     let actSilviculturalesEstado : ActividadesSilviculturalesEstadoDto = new ActividadesSilviculturalesEstadoDto();
     
     actSilviculturalesEstado.estado = dataCast.estado;
     actSilviculturalesEstado.id = this.id;
     actSilviculturalesEstado.observacion = dataCast.observacion;
-    debugger;
+    ;
     actSilviculturalesEstado.observacion2 = dataCast.observacion2;
     
     this.actividadessilviculturalesService.updateProcesamientoEstado(this.id, actSilviculturalesEstado).subscribe(

@@ -63,7 +63,7 @@ export class MasreportesService extends GenericService<CensoArboreoDto> {
           break;
       default:
     }
-    debugger
+    
     if (+parametros.selectedReportType == 4) {
       return this.getShapefileZipParams(params);
     }

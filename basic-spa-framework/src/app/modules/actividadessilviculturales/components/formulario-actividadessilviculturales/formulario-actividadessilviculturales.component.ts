@@ -106,7 +106,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
       this.onlyRegistroFotograficoAntes.push(fotosAntes);
 
       
-      debugger;
+      ;
       if(data.fotoDuranteUno) {
         let fotosDuranteUno = new RegistroFotograficoCensoDto();
         fotosDuranteUno.nombre = data.fotoDuranteUno;
@@ -313,7 +313,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
   }
 
   Guardar() {
-    debugger;
+    ;
     if (
       this.form.invalid ||
       this.buscarArbolLista.getCrossBuscarArbol().length == 0
@@ -371,7 +371,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
     }
 
     let rotationDurante = this.registroFotograficoDurante.getRotationLoaded();
-    debugger;
+    ;
     if(rotationDurante.rotation.length != 0) {
       rotationAntes.rotation.push(rotationDurante.rotation[0]);
       whichOne.push("FotoDuranteUno");
@@ -460,7 +460,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
     let whichOne: string[] = new Array<string>();
     let rotationAntes = this.registroFotograficoAntes.getRotationLoaded();
 
-    debugger;
+    ;
     if(this.registroFotograficoAntes.getCurrentFotos().length == 0) {
       this.form["fotoAntes"] = null;
     } else {

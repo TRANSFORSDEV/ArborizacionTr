@@ -16,6 +16,7 @@ import { ClasificacionService } from 'src/app/core/services/clasificacion-servic
 import { BasicTableService } from 'src/app/core/services/basictable.service';
 import { GenericPredecesorSucesorTableDto } from 'src/app/core/models/generic-predecesor-sucesor-dto.model';
 import { customRangeValidator } from 'src/app/core/validator/custom-range.validator';
+import { TableService } from 'primeng/table';
 @Component({
   selector: 'app-formulario-censoArboreo',
   templateUrl: './formulario-censoArboreo.component.html',
@@ -41,7 +42,7 @@ export class FormularioCensoArboreoComponent implements OnInit {
   tipoEmpla: DetalleDto[];
   infraAfec: DetalleDto[];
   origenes: DetalleDto[];
-  clasificado:ClasificacionDto[];
+  clasificado:GenericPredecesorSucesorTableDto[];
 
   Comunas:GenericPredecesorSucesorTableDto[];
   Barrios:GenericPredecesorSucesorTableDto[];
@@ -162,13 +163,30 @@ export class FormularioCensoArboreoComponent implements OnInit {
 
 
   escucharCambios(data: ClasificacionDto) {
-      console.log("seleccionado");
-      this.form.patchValue({ orden: data.orden.descripcion });
-      this.form.patchValue({ familia: data.familia.descripcion });
-      this.form.patchValue({ especie: data.especie.descripcion });
-      this.form.patchValue({ genero: data.genero.descripcion });
-      this.form.patchValue({ nombreComun: data.nombreComun });
-      this.form.patchValue({ nombreCientifico: data.nombreCientifico });
+    this.basicTableService.getByTableById("Clasificacion", data.id).subscribe({
+      next: ({ data }) => {
+        const [nombreComunRaw, nombreCientificoRaw] = data.descripcion.split('-');
+    
+        const sucesoresObj = (data.sucesores ?? []).map(e => {
+          const partes = e.descripcion.split('-');
+          return { tipo: partes[0]?.trim(), descripcion: partes[1]?.trim() };
+        })
+        .filter(e => e.tipo && e.descripcion)
+        .reduce((acc, curr) => {
+          acc[curr.tipo] = curr.descripcion;
+          return acc;
+        }, {} as Record<string, string>);
+
+        this.form.patchValue({
+          nombreComun: nombreComunRaw?.trim() ?? data.descripcion.trim(),
+          nombreCientifico: nombreCientificoRaw?.trim() ?? data.descripcion.trim(),
+          orden: sucesoresObj['Orden'] ?? '',
+          familia: sucesoresObj['Familia'] ?? '',
+          genero: sucesoresObj['Genero'] ?? '',
+          especie: sucesoresObj['Especie'] ?? ''
+        });
+      }
+    });
   }
 
   private BuildForm() {
@@ -286,18 +304,21 @@ export class FormularioCensoArboreoComponent implements OnInit {
 
   getClasificacion() {
     this.statusDetail = 'loading';
-    this.clasificacionService.getAll().subscribe(
+    this.basicTableService.getByTable('Clasificacion').subscribe(
       result => {
+        console.log('Clasificacion', result);
+        
         this.clasificado = result.data
         this.statusDetail = 'init';
       }
     );
   }
-
+  
   getComunas() {
     this.statusDetail = 'loading';
     this.basicTableService.getByTable('Comuna').subscribe(
       result => {
+        console.log('Comunas', result);
         this.Comunas = result.data
         this.statusDetail = 'init';
       }
@@ -441,7 +462,7 @@ export class FormularioCensoArboreoComponent implements OnInit {
       this.mostrarNecesitaImagenes();
       return
     }
-    debugger;
+    ;
     let clonForm = this.clonarFormulario();
     clonForm.patchValue(this.form.getRawValue());
     
@@ -463,6 +484,7 @@ export class FormularioCensoArboreoComponent implements OnInit {
     let infoFotos = {
       'rotation'  : this.registroFotosComponent.getRotationLoaded().rotation,
     };
+    
 
     formData.append('fullobject', JSON.stringify(clonForm.value));
     formData.append('infofotos', JSON.stringify(infoFotos));

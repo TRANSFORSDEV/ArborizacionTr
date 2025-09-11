@@ -1,6 +1,6 @@
 <app-obligatorio></app-obligatorio>
 <div class="flex justify-between mb-4">
-  <h1 class="text-lg font-semibold">CensoArboreo</h1>
+  <h1 class="text-lg font-semibold">Censo Arboreo</h1>
 </div>
 <div class="flex justify-end space-x-4">
   <!--<app-btn *ngIf="!isNew && mostraDelete" typeBtn="submit" color="yellow" [loading]="statusDetail === 'loading'"
@@ -57,7 +57,7 @@
             <div>
               <label for="clasificado"
                 class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-900"><strong class="text-red-500">*</strong>Clasificacion:</label>
-              <ng-select [items]="clasificado" bindLabel="etiqueta" bindValue="id" formControlName="clasificacionId"
+              <ng-select [items]="clasificado" bindLabel="descripcion" bindValue="id" formControlName="clasificacionId"
                 placeholder="" (change)="escucharCambios($event)" [ngClass]="{
                   required:
                   !field('clasificacionId').isValid()

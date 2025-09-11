@@ -104,7 +104,7 @@ export class ListaCensoArboreoComponent implements OnInit {
 
 
   refreshGrid(event) {
-    debugger
+    
     this.statusDetail = 'loading';
     this.page = event.first / event.rows + 1
     this.pageSize = event.rows;

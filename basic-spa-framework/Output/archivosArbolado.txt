@@ -3958,7 +3958,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
       this.onlyRegistroFotograficoAntes.push(fotosAntes);
 
       
-      debugger;
+      ;
       if(data.fotoDuranteUno) {
         let fotosDuranteUno = new RegistroFotograficoCensoDto();
         fotosDuranteUno.nombre = data.fotoDuranteUno;
@@ -4151,7 +4151,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
   }
 
   Guardar() {
-    debugger;
+    ;
     if (
       this.form.invalid ||
       this.buscarArbolLista.getCrossBuscarArbol().length == 0
@@ -4192,7 +4192,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
     }
 
     let rotationDurante = this.registroFotograficoDurante.getRotationLoaded();
-    debugger;
+    ;
     if(rotationDurante.rotation.length != 0) {
       rotationAntes.rotation.push(rotationDurante.rotation[0]);
       whichOne.push("FotoDuranteUno");
@@ -4259,7 +4259,7 @@ export class FormularioActividadesSilviculturalesComponent implements OnInit {
     let whichOne: string[] = new Array<string>();
     let rotationAntes = this.registroFotograficoAntes.getRotationLoaded();
 
-    debugger;
+    ;
     if(this.registroFotograficoAntes.getCurrentFotos().length == 0) {
       this.form["fotoAntes"] = null;
     } else {
@@ -4532,7 +4532,7 @@ export class ListaActividadesSilviculturalesComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe((params: Params) => {
-      debugger;
+      ;
       this.tipoActividad = params['tipoActividad'];
       this.routeAdd = "/app/actividades/create/" + this.tipoActividad;
       this.editPath = '/app/actividades/edit/'+ this.tipoActividad + "/";
@@ -5380,7 +5380,7 @@ export class ProcesamientoActividadesSilviculturalesComponent implements OnInit 
   set dataForm(data:ActividadesSilviculturalesDto)
   {
     console.log(data)
-    debugger;
+    ;
     if(data)
     {
       this.isNew = false;
@@ -5800,7 +5800,7 @@ constructor(private activatedRoute: ActivatedRoute,
   {
     let dataCast : ActividadesSilviculturalesDto = data;
 
-    debugger;
+    ;
     let actSilviculturalesEstado : ActividadesSilviculturalesEstadoDto = new ActividadesSilviculturalesEstadoDto();
     
     actSilviculturalesEstado.estado = dataCast.estado;
@@ -6656,7 +6656,7 @@ constructor(
 
 private getCenso(){
   this.statusDetail = 'loading';
-  debugger;
+  ;
   if(this.isActividadPlantulaBusqueda) {
     this.service.getFilterPlantula(this.field("filter").get().value, this.page ,this.pageSize ).subscribe(
       respuesta => {
@@ -6726,7 +6726,7 @@ private getCenso(){
       this.getCenso();
 
     this.statusDetail = 'loading';
-    debugger; 
+    ; 
     if(this.isActividadPlantulaBusqueda) {
       this.service.getFilterPlantula(this.field("filter").get().value, this.page ,this.pageSize ).subscribe(
         afiliados => {
@@ -8145,10 +8145,10 @@ export class FormularioCensoArboreoComponent implements OnInit {
   }
 
   changeLeagueOwner(event:any){
-    debugger;
+    ;
     this.basicTableService.getByTableByIdPredecesor("Barrio",event.id).subscribe(
       result => {
-        debugger;
+        ;
         this.form.patchValue({ barrio: '' });
         this.Barrios = result.data;
       }
@@ -8256,7 +8256,7 @@ export class FormularioCensoArboreoComponent implements OnInit {
     }
 
     let clonForm = this.formbuilder.group(this.form.getRawValue());
-    debugger;
+    ;
     clonForm.value['coordenada'] = this.coordenadas.getFormValue();
     clonForm.value['fotos'] = new Array<RegistroFotograficoCensoDto>();
 
@@ -8277,7 +8277,7 @@ export class FormularioCensoArboreoComponent implements OnInit {
 
     formData.append('fullobject', JSON.stringify(clonForm.value));
     formData.append('infofotos', JSON.stringify(infoFotos));
-    debugger;
+    ;
     this.create.emit(formData);
   }
 
@@ -9407,7 +9407,7 @@ export class ImpresionfCensoArboreoComponent implements OnInit {
     }
 
     let clonForm = this.formbuilder.group(this.form.getRawValue());
-    debugger;
+    ;
     clonForm.value['coordenada'] = this.coordenadas.getFormValue();
     clonForm.value['fotos'] = new Array<RegistroFotograficoCensoDto>();
 
@@ -9423,7 +9423,7 @@ export class ImpresionfCensoArboreoComponent implements OnInit {
         formData.append(`censo.${prop}`, this.form.value[prop].toString());
       }
     }*/
-    debugger;
+    ;
 
 
     clonForm.value["estadoFitosanitario"]=JSON.stringify(this.form.value.estadoFitosanitario);
@@ -9436,7 +9436,7 @@ export class ImpresionfCensoArboreoComponent implements OnInit {
 
     formData.append('fullobject', JSON.stringify(clonForm.value));
     formData.append('infofotos', JSON.stringify(infoFotos));
-    debugger;
+    ;
     this.create.emit(formData);
   }
 
@@ -14347,7 +14347,7 @@ export class RegistroFotograficoComponent implements OnInit {
 
   @Input()
   set maxFotos (cant : number) {    
-    debugger;
+    ;
     if(cant==0){
       cant = 9999;
     }

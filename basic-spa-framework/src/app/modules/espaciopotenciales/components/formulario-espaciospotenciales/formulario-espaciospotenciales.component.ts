@@ -136,10 +136,10 @@ caracteristicasEdaficas = [
   }
 
   changeLeagueOwner(event:any){
-    debugger;
+    ;
     this.basicTableService.getByTableByIdPredecesor("Barrio",event.id).subscribe(
       result => {
-        debugger;
+        ;
         this.form.patchValue({ barrio: '' });
         this.Barrios = result.data;
       }
@@ -240,7 +240,7 @@ caracteristicasEdaficas = [
 
     formData.append('infofotos', JSON.stringify(infoFotos));
     let fullStringObj = JSON.stringify(this.form.value);
-    debugger;
+    ;
     formData.append('fullobject', fullStringObj);
 
 

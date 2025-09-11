@@ -38,7 +38,7 @@ export class BuscarArbolComponent {
 
   private getCenso() {
     this.statusDetail = 'loading';
-    debugger;
+    ;
     if (this.isActividadPlantulaBusqueda) {
       this.service.getFilterPlantula(this.field("filter").get().value, this.page, this.pageSize).subscribe(
         respuesta => {
@@ -107,7 +107,7 @@ export class BuscarArbolComponent {
       this.getCenso();
 
     this.statusDetail = 'loading';
-    debugger;
+    ;
     if (this.isActividadPlantulaBusqueda) {
       this.service.getFilterPlantula(this.field("filter").get().value, this.page, this.pageSize).subscribe(
         afiliados => {
